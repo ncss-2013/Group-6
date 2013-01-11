@@ -2,12 +2,21 @@
 
 # Imports
 import copy
+import math
 import serial
 import simplekml
 
 # Helper function to convert an RGB triplet to a hex string
 def to_hex(rgb):
-    return format((rgb[2]<<16)|(rgb[1]<<8)|rgb[0], '06x')
+	return format((rgb[2]<<16)|(rgb[1]<<8)|rgb[0], '06x')
+
+# Convert 0-100 range to pretty blue-red grad BecauseWhyNot
+def get_grad_colour(pos):
+	if pos>100 or pos<0:
+		raise ValueError("`pos` value passed ({0}) is out of boundaries (0-100).".format(pos))
+	b = math.sin(math.radians(((100-pos)/100)*90))*255
+	r = math.sin(math.radians((pos/100)*90))*255
+	return (int(r), 0, int(b))
 
 # Set up basic line style
 linestyle = simplekml.LineStyle(width=4)
@@ -64,8 +73,8 @@ for i in range(1, len(coords)):
 	lineseg.altitudemode = simplekml.AltitudeMode.absolute
 	lineseg.polystyle = polystyle
 	lineseg.linestyle = copy.deepcopy(linestyle)
-	c = int((255/len(coords))*i)
-	lineseg.linestyle.color = 'ff' + to_hex((0,c,0))
+	c = get_grad_colour(int((100/len(coords))*i))
+	lineseg.linestyle.color = 'ff' + to_hex(c)
 
 
 

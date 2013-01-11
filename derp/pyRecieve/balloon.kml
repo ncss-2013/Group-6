@@ -3,7 +3,7 @@
     <Document id="feat_1">
         <Style id="stylesel_0">
             <LineStyle id="substyle_0">
-                <color>ff000700</color>
+                <color>fffe0008</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -15,7 +15,7 @@
         </Style>
         <Style id="stylesel_1">
             <LineStyle id="substyle_0">
-                <color>ff000e00</color>
+                <color>fffe0014</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -27,7 +27,7 @@
         </Style>
         <Style id="stylesel_2">
             <LineStyle id="substyle_0">
-                <color>ff001500</color>
+                <color>fffc001f</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -39,7 +39,7 @@
         </Style>
         <Style id="stylesel_3">
             <LineStyle id="substyle_0">
-                <color>ff001c00</color>
+                <color>fffb002b</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -51,7 +51,7 @@
         </Style>
         <Style id="stylesel_4">
             <LineStyle id="substyle_0">
-                <color>ff002300</color>
+                <color>fff90033</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -63,7 +63,7 @@
         </Style>
         <Style id="stylesel_5">
             <LineStyle id="substyle_0">
-                <color>ff002a00</color>
+                <color>fff6003f</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -75,7 +75,7 @@
         </Style>
         <Style id="stylesel_6">
             <LineStyle id="substyle_0">
-                <color>ff003100</color>
+                <color>fff3004a</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -87,7 +87,7 @@
         </Style>
         <Style id="stylesel_7">
             <LineStyle id="substyle_0">
-                <color>ff003800</color>
+                <color>ffef0056</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -99,7 +99,7 @@
         </Style>
         <Style id="stylesel_8">
             <LineStyle id="substyle_0">
-                <color>ff003f00</color>
+                <color>ffeb0061</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -111,7 +111,7 @@
         </Style>
         <Style id="stylesel_9">
             <LineStyle id="substyle_0">
-                <color>ff004600</color>
+                <color>ffe80068</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -123,7 +123,7 @@
         </Style>
         <Style id="stylesel_10">
             <LineStyle id="substyle_0">
-                <color>ff004d00</color>
+                <color>ffe30073</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -135,7 +135,7 @@
         </Style>
         <Style id="stylesel_11">
             <LineStyle id="substyle_0">
-                <color>ff005500</color>
+                <color>ffdd007e</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -147,7 +147,7 @@
         </Style>
         <Style id="stylesel_12">
             <LineStyle id="substyle_0">
-                <color>ff005c00</color>
+                <color>ffd70088</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -159,7 +159,7 @@
         </Style>
         <Style id="stylesel_13">
             <LineStyle id="substyle_0">
-                <color>ff006300</color>
+                <color>ffd2008f</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -171,7 +171,7 @@
         </Style>
         <Style id="stylesel_14">
             <LineStyle id="substyle_0">
-                <color>ff006a00</color>
+                <color>ffcb0099</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -183,7 +183,7 @@
         </Style>
         <Style id="stylesel_15">
             <LineStyle id="substyle_0">
-                <color>ff007100</color>
+                <color>ffc400a2</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -195,7 +195,7 @@
         </Style>
         <Style id="stylesel_16">
             <LineStyle id="substyle_0">
-                <color>ff007800</color>
+                <color>ffbc00ab</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -207,7 +207,7 @@
         </Style>
         <Style id="stylesel_17">
             <LineStyle id="substyle_0">
-                <color>ff007f00</color>
+                <color>ffb400b4</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -219,7 +219,7 @@
         </Style>
         <Style id="stylesel_18">
             <LineStyle id="substyle_0">
-                <color>ff008600</color>
+                <color>ffae00b9</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -231,7 +231,7 @@
         </Style>
         <Style id="stylesel_19">
             <LineStyle id="substyle_0">
-                <color>ff008d00</color>
+                <color>ffa500c1</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -243,7 +243,7 @@
         </Style>
         <Style id="stylesel_20">
             <LineStyle id="substyle_0">
-                <color>ff009400</color>
+                <color>ff9c00c9</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -255,7 +255,7 @@
         </Style>
         <Style id="stylesel_21">
             <LineStyle id="substyle_0">
-                <color>ff009b00</color>
+                <color>ff9200d0</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -267,7 +267,7 @@
         </Style>
         <Style id="stylesel_22">
             <LineStyle id="substyle_0">
-                <color>ff00a200</color>
+                <color>ff8c00d5</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -279,7 +279,7 @@
         </Style>
         <Style id="stylesel_23">
             <LineStyle id="substyle_0">
-                <color>ff00aa00</color>
+                <color>ff8100db</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -291,7 +291,7 @@
         </Style>
         <Style id="stylesel_24">
             <LineStyle id="substyle_0">
-                <color>ff00b100</color>
+                <color>ff7700e1</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -303,7 +303,7 @@
         </Style>
         <Style id="stylesel_25">
             <LineStyle id="substyle_0">
-                <color>ff00b800</color>
+                <color>ff6c00e6</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -315,7 +315,7 @@
         </Style>
         <Style id="stylesel_26">
             <LineStyle id="substyle_0">
-                <color>ff00bf00</color>
+                <color>ff6100eb</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -327,7 +327,7 @@
         </Style>
         <Style id="stylesel_27">
             <LineStyle id="substyle_0">
-                <color>ff00c600</color>
+                <color>ff5a00ee</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -339,7 +339,7 @@
         </Style>
         <Style id="stylesel_28">
             <LineStyle id="substyle_0">
-                <color>ff00cd00</color>
+                <color>ff4e00f2</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -351,7 +351,7 @@
         </Style>
         <Style id="stylesel_29">
             <LineStyle id="substyle_0">
-                <color>ff00d400</color>
+                <color>ff4300f5</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -363,7 +363,7 @@
         </Style>
         <Style id="stylesel_30">
             <LineStyle id="substyle_0">
-                <color>ff00db00</color>
+                <color>ff3700f8</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -375,7 +375,7 @@
         </Style>
         <Style id="stylesel_31">
             <LineStyle id="substyle_0">
-                <color>ff00e200</color>
+                <color>ff2f00fa</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -387,7 +387,7 @@
         </Style>
         <Style id="stylesel_32">
             <LineStyle id="substyle_0">
-                <color>ff00e900</color>
+                <color>ff2300fc</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -399,7 +399,7 @@
         </Style>
         <Style id="stylesel_33">
             <LineStyle id="substyle_0">
-                <color>ff00f000</color>
+                <color>ff1700fd</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -411,7 +411,7 @@
         </Style>
         <Style id="stylesel_34">
             <LineStyle id="substyle_0">
-                <color>ff00f700</color>
+                <color>ff0c00fe</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
