@@ -7,30 +7,11 @@
 #define WAVE_IN 12
 #define LED 13
 #define TRANSISTOR 8
-#define START_BYTE 255
+#define START_BYTE 97
 
 int c;
 unsigned long count = 0;
-char incoming_char = 0;
-bool receiving = false;
-byte data[9];
-int data_received = 0;
 
-void turnRadioOn() {
-  digitalWrite(TRANSISTOR, LOW);
-}
-
-void sendMessage() {
-  for (int i=0; i < 9; i++) {
-    for (int j=0; j < 8; j++) {
-      count = 0;
-      digitalWrite(MODULATED, digitalRead(WAVE_IN) && bitRead(data[i], 8-j));
-      while (count < 25){
-        //Do nothing
-      }
-    }
-  }
-}
 
 void setup()
 {
@@ -53,18 +34,15 @@ void setup()
     bit_set(TIMSK2, OCIE2A);
     
     Serial.begin(9600);
-
-    for (int i=0; i < 8; i++){
-      data[i] = 170;
-    }
-    data[8] = 192;
-    // TODO: enable the timer interrupt
 }
 
 int current_byte=0;
 int current_bit=0;
-bool transmitting=false;
+bool transmitting = false;
+bool receiving = false;
 byte send_bit=0;
+byte data[9];
+//int data_received = 0;
 
 void loop() 
 {
@@ -80,11 +58,19 @@ void loop()
       turnRadioOn();
     }
   } */
+  if (Serial.available() && !receiving) {
+    if (Serial.read() == START_BYTE) {
+      digitalWrite(TRANSISTOR, LOW);
+      digitalWrite(LED, HIGH);
+      receiving = true;
+    }
+  }
   if (Serial.available() && !transmitting) {
     data[current_byte] = Serial.read();
     current_byte++;
     if (current_byte >= 9) {
       transmitting = true;
+      receiving = false;
       current_byte = 0;
     }
   }
@@ -109,6 +95,8 @@ void loop()
       send_bit = 0;
       transmitting = false;
       digitalWrite(MODULATED, LOW);
+      digitalWrite(TRANSISTOR, HIGH);
+      digitalWrite(LED, LOW);
     }
   }
   digitalWrite(MODULATED, send_bit && digitalRead(WAVE_IN));
