@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="feat_1">
+        <Style id="stylesel_0">
+            <LineStyle id="substyle_0">
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Placemark id="feat_2">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_0">
+                <coordinates>-112.2550785337791,36.07954952145647,2357 -112.2549277039738,36.08117083492122,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+        <Placemark id="feat_3">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_1">
+                <coordinates>-112.2549277039738,36.08117083492122,2357 -112.2552505069063,36.08260761307279,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+        <Placemark id="feat_4">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_2">
+                <coordinates>-112.2552505069063,36.08260761307279,2357 -112.2564540158376,36.08395660588506,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+        <Placemark id="feat_5">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_3">
+                <coordinates>-112.2564540158376,36.08395660588506,2357 -112.2580238976449,36.08511401044813,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+        <Placemark id="feat_6">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_4">
+                <coordinates>-112.2580238976449,36.08511401044813,2357 -112.2595218489022,36.08584355239394,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+        <Placemark id="feat_7">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_5">
+                <coordinates>-112.2595218489022,36.08584355239394,2357 -112.2608216347552,36.08612634548589,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+        <Placemark id="feat_8">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_6">
+                <coordinates>-112.2608216347552,36.08612634548589,2357 -112.262073428656,36.08626019085147,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+        <Placemark id="feat_9">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_7">
+                <coordinates>-112.262073428656,36.08626019085147,2357 -112.2633204928495,36.08621519860091,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+        <Placemark id="feat_10">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_8">
+                <coordinates>-112.2633204928495,36.08621519860091,2357 -112.2644963846444,36.08627897945274,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+        <Placemark id="feat_11">
+            <styleUrl>#stylesel_0</styleUrl>
+            <LineString id="geom_9">
+                <coordinates>-112.2644963846444,36.08627897945274,2357 -112.2656969554589,36.08649599090644,2357</coordinates>
+                <extrude>1</extrude>
+                <altitudeMode>absolute</altitudeMode>
+            </LineString>
+        </Placemark>
+    </Document>
+</kml>

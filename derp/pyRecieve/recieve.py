@@ -1,15 +1,20 @@
+#!python
+
+# Imports
 import serial
 import simplekml
 
-lstyle = simplekml.LineStyle()
-lstyle.color = '7f00ffff'
-lstyle.width = 4
-pstyle = simplekml.PolyStyle(0, 1)
-style = simplekml.Style(linestyle=lstyle, polystyle=pstyle)
+# Helper function to convert an RGB triplet to a hex string
+def to_hex(rgb):
+    return format((rgb[0]<<16)|(rgb[1]<<8)|rgb[2], '06x')
 
-kml = simplekml.Kml()
-ls = kml.newlinestring(name='Herp')
-ls.coords = [
+# Set up basic line style
+linestyle = simplekml.LineStyle(width=4)
+polystyle = simplekml.PolyStyle(fill=0, outline=0)
+style = simplekml.Style(linestyle=linestyle, polystyle=polystyle)
+
+# List of coords. This will be created by the reciever when complete.
+coords = [
 	(-112.2550785337791,36.07954952145647,2357),
 	(-112.2549277039738,36.08117083492122,2357),
 	(-112.2552505069063,36.08260761307279,2357),
@@ -22,7 +27,21 @@ ls.coords = [
 	(-112.2644963846444,36.08627897945274,2357),
 	(-112.2656969554589,36.08649599090644,2357),
 ]
-ls.extrude = 1
-ls.altitudemode = simplekml.AltitudeMode.absolute
-ls.style = style
-kml.save('Test2.kml')
+
+# Initiate the KML object that will be used as output
+kml = simplekml.Kml()
+
+# Loop over coords to create line segments that can be coloured individually
+for i in range(1, len(coords)):
+	lineseg = kml.newlinestring()
+	lineseg.coords = [coords[i-1], coords[i]]
+	lineseg.extrude = 1
+	lineseg.altitudemode = simplekml.AltitudeMode.absolute
+	lineseg.style = style
+
+
+
+
+
+
+kml.save('Test3.kml')
