@@ -42,7 +42,7 @@ void loop()
     Serial.print(lat.mins);
     Serial.print("' ");
     Serial.print(lat.secs);
-    Serial.print("\" ");
+    Serial.println("\" ");
 
 
    
@@ -132,10 +132,7 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
 {
   char str[200];
   
-  for (int i = 0;i < 200;i++)
-  {
-    str[i] = 0;
-  }
+  wipeArray(str,200);
   
   
   if (isLongitude)
@@ -146,19 +143,20 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
     
     l.degs = atoi(str);
     
-    str[0] = '\0';
+    wipeArray(str,200);
    
     
     appendchar(str, GPSinfo[indexInGPS][3]);
     appendchar(str, GPSinfo[indexInGPS][4]);
     
     l.mins = atoi(str);
-    str[0] = '\0';
-    
+    wipeArray(str,200);
+  
     appendchar(str, GPSinfo[indexInGPS][6]);
+
     appendchar(str, GPSinfo[indexInGPS][7]);
+   
     appendchar(str, GPSinfo[indexInGPS][8]);
-    
     
     l.secs = atoi(str) * 60;
   
@@ -170,14 +168,14 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
     
     l.degs = atoi(str);
     
-    str[0] = 0;
+    wipeArray(str,200);
     
     appendchar(str, GPSinfo[indexInGPS][2]);
     appendchar(str, GPSinfo[indexInGPS][3]);
     
     l.mins = atoi(str);
     
-    str[0] = 0;
+    wipeArray(str,200);
     
     appendchar(str, GPSinfo[indexInGPS][5]);
     appendchar(str, GPSinfo[indexInGPS][6]);
@@ -230,4 +228,12 @@ void appendchar(char * s, char c)
 {
    s[strlen(s)] = c;
    s[(strlen(s)+1)] = 0;
+}
+
+void wipeArray(char * array, int length)
+{
+  for (int i = 0;i<length;i++)
+  {
+    array[i] = 0;
+  }
 }
