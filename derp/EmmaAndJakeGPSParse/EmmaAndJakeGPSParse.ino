@@ -1,5 +1,7 @@
 #include <SoftwareSerial.h>
 #include <string.h>
+#include "latlon.h"
+#include <stdlib.h>
 
 
 // Declare a software serial port to interface with the GPS unit.
@@ -27,19 +29,19 @@ void loop()
 {
   if (readGPSData()) {
     Serial.print("Longitude: ");
-    Serial.print(lonDeg);
+    Serial.print(lon.degs);
     Serial.print(" ");
-    Serial.print(lonMin);
+    Serial.print(lon.mins);
     Serial.print("' ");
-    Serial.print(lonSec);
+    Serial.print(lon.secs);
     Serial.print("\" ");
 
     Serial.print("Latitude: ");
-    Serial.print(latDeg);
+    Serial.print(lat.degs);
     Serial.print(" ");
-    Serial.print(latMin);
+    Serial.print(lat.mins);
     Serial.print("' ");
-    Serial.print(latSec);
+    Serial.print(lat.secs);
     Serial.print("\" ");
 
 
@@ -107,13 +109,9 @@ bool readGPSData()
     i++;
   }
 
-  
-
-
-
   /* Parse Latitude and Longitude */
-  parseLongLatitude(false);
-  parseLongLatitude(true);
+  parseLongLatitude(false, lat, 0);
+  parseLongLatitude(true, lon, 2);
 
 
 
@@ -138,94 +136,51 @@ bool parseLongLatitude(bool isLongitude, latlon l, int indexInGPS)
   
   if (isLongitude)
   {
-    strcat(str, GPSinfo[indexInGPS[0]]);
-    strcat(str, GPSinfo[indexInGPS[1]]);
-    strcat(str, GPSinfo[indexInGPS[2]]);
+    appendchar(str, GPSinfo[indexInGPS][0]);
+    appendchar(str, GPSinfo[indexInGPS][1]);
+    appendchar(str, GPSinfo[indexInGPS][2]);
     
     l.degs = atoi(str);
     
     str[0] = 0;
     
-    strcat(str, GPSinfo[indexInGPS[3]]);
-    strcat(str, GPSinfo[indexInGPS[4]]);
+    appendchar(str, GPSinfo[indexInGPS][3]);
+    appendchar(str, GPSinfo[indexInGPS][4]);
     
     l.mins = atoi(str);
     
     str[0] = 0;
     
-    strcat(str, GPSinfo[indexInGPS[6]]);
-    strcat(str, GPSinfo[indexInGPS[7]]);
-    strcat(str, GPSinfo[indexInGPS[8]]);
+    appendchar(str, GPSinfo[indexInGPS][6]);
+    appendchar(str, GPSinfo[indexInGPS][7]);
+    appendchar(str, GPSinfo[indexInGPS][8]);
     
     l.secs = atoi(str) * 60;
   
   }
   else
   {
-    strcat(str, GPSinfo[indexInGPS[0]]);
-    strcat(str, GPSinfo[indexInGPS[1]]);
+    appendchar(str, GPSinfo[indexInGPS][0]);
+    appendchar(str, GPSinfo[indexInGPS][1]);
     
     l.degs = atoi(str);
     
     str[0] = 0;
     
-    strcat(str, GPSinfo[indexInGPS[2]]);
-    strcat(str, GPSinfo[indexInGPS[3]]);
+    appendchar(str, GPSinfo[indexInGPS][2]);
+    appendchar(str, GPSinfo[indexInGPS][3]);
     
     l.mins = atoi(str);
     
     str[0] = 0;
     
-    strcat(str, GPSinfo[indexInGPS[5]]);
-    strcat(str, GPSinfo[indexInGPS[6]]);
-    strcat(str, GPSinfo[indexInGPS[7]]);
+    appendchar(str, GPSinfo[indexInGPS][5]);
+    appendchar(str, GPSinfo[indexInGPS][6]);
+    appendchar(str, GPSinfo[indexInGPS][7]);
     
     l.secs = atoi(str) * 60;
     
   }
-  
-  
-  
-  
-  
-  
-  
-  //  int deg, min, sec;
-//  char dir;
-//
-//  // The format of the information is:
-//  //   Longitude: dddmm.mmmmm
-//  //   Latitude:   ddmm.mmmmm
-//  float coord = readFloatUntilComma();
-//  /* Read the degrees */
-//  deg = (int) (coord/100);
-//  
-//  /*  Read the minutes/seconds */
-//  coord -= deg; 
-//  coord *= 100;
-//  min = (int) coord;
-//  coord -= min;
-//  sec = coord*60;
-//  // Note: the ',' at the end of the lon/lat has already been consumed
-//
-//  // Read the latitude direction
-//  dir = readChar();
-//
-//  // Save the parsed results.
-//  if (isLongitude) 
-//    {
-//      lonDeg = deg;
-//      lonMin = min;
-//      lonSec = sec;
-//      lonDir = dir;
-//    } 
-//  else 
-//    {
-//      latDeg = deg;
-//      latMin = min;
-//      latSec = sec;
-//      latDir = dir;
-//    }
 
   return true;
 }
@@ -259,13 +214,15 @@ bool parseLongLatitude(bool isLongitude, latlon l, int indexInGPS)
 //  
 //  return result;
 //}
- 
-bool isDigit(char c) {
-  /* Is the character c within the ascii range 0-9 */
-  return (c>='0' && c <='9');
-}
+// 
+//bool isDigit(char c) {
+//  /* Is the character c within the ascii range 0-9 */
+//  return (c>='0' && c <='9');
 
-// Read in a 'num_chars' integer from serial.
-int readInt(int num_chars) {
-  return 0;
+//}
+
+void appendchar(char * s, char c)
+{
+   s[strlen(s)] = c;
+   s[(strlen(s)+1)] = 0;
 }
