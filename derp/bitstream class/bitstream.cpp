@@ -18,23 +18,25 @@ void bitStream::fromBitStream(char *stream)
   chksum = msg.chksum;
 }
 
-void bitStream::toBitStream(ordinate _lat, ordinate _long, int _alt, int _temp, int _chksum)
+void bitStream::toBitStream(ordinate _lat, ordinate _long, int _alt, int _temp, char _chksum)
 {
   message msg;
-  if (latitude.deg < 0)
+  if (_lat.deg < 0)
   {
     msg.latsign = 1;
-    latitude.deg *= -1;
+    _lat.deg *= -1;
   }
+  else msg.latsign = 0;
   msg.latdeg = _lat.deg;
   msg.latmin = _lat.min;
   msg.latsec = _lat.sec;
   
-  if (longitude.deg < 0)
+  if (_long.deg < 0)
   {
     msg.longsign = 1;
-    longitude.deg *= -1;
+    _long.deg *= -1;
   }
+  else msg.longsign = 0;
   msg.longdeg = _long.deg;
   msg.longmin = _long.min;
   msg.longsec = _long.sec;
@@ -46,6 +48,5 @@ void bitStream::toBitStream(ordinate _lat, ordinate _long, int _alt, int _temp, 
   for (int i = 0; i < 10; i++)
   {
     stream[i] = charstream[i];
-    Serial.print
   }
 }
