@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+	<Document>
+		<visibility>1</visibility>
+		<NetworkLink>
+			<name>Weather Balloon Feed</name>
+			<refreshVisibility>1</refreshVisibility>
+			<Link>
+				<href>E:\Group Project\pyRecieve\balloon.kml</href>
+				<refreshMode>onInterval</refreshMode>
+				<refreshInterval>30</refreshInterval>
+			</Link>
+		</NetworkLink>
+	</Document>
+</kml>
