@@ -61,7 +61,6 @@ bool readGPSData()
   if (!(readChar() == 'G' && readChar() == 'P')) {
   	  return false;
   }
-
   // Read the next three bytes which specify the header
  if (!(readChar() == 'R' && readChar() == 'M' && readChar() == 'C'))
  {
