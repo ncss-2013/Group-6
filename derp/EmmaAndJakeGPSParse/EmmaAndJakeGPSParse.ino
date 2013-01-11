@@ -129,11 +129,11 @@ char readChar()
 }
 
 // Define the function to read the long/lat
-bool parseLongLatitude(bool isLongitude, latlon l, int indexInGPS)
+bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
 {
   char str[200];
   
-  for (int i = 0;i<=200;i++)
+  for (int i = 0;i < 200;i++)
   {
     str[i] = 0;
   }
@@ -147,20 +147,19 @@ bool parseLongLatitude(bool isLongitude, latlon l, int indexInGPS)
     
     l.degs = atoi(str);
     
-    
+    str[0] = '\0';
    
     
     appendchar(str, GPSinfo[indexInGPS][3]);
     appendchar(str, GPSinfo[indexInGPS][4]);
     
     l.mins = atoi(str);
-    
+    str[0] = '\0';
     
     appendchar(str, GPSinfo[indexInGPS][6]);
     appendchar(str, GPSinfo[indexInGPS][7]);
     appendchar(str, GPSinfo[indexInGPS][8]);
     
-    Serial.println(str);
     
     l.secs = atoi(str) * 60;
   
