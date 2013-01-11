@@ -3,6 +3,115 @@
     <Document id="feat_1">
         <Style id="stylesel_0">
             <LineStyle id="substyle_0">
+                <color>ff001700</color>
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_1">
+            <LineStyle id="substyle_0">
+                <color>ff002e00</color>
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_2">
+            <LineStyle id="substyle_0">
+                <color>ff004500</color>
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_3">
+            <LineStyle id="substyle_0">
+                <color>ff005c00</color>
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_4">
+            <LineStyle id="substyle_0">
+                <color>ff007300</color>
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_5">
+            <LineStyle id="substyle_0">
+                <color>ff008b00</color>
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_6">
+            <LineStyle id="substyle_0">
+                <color>ff00a200</color>
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_7">
+            <LineStyle id="substyle_0">
+                <color>ff00b900</color>
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_8">
+            <LineStyle id="substyle_0">
+                <color>ff00d000</color>
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_1">
+                <colorMode>normal</colorMode>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_9">
+            <LineStyle id="substyle_0">
+                <color>ff00e700</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
@@ -21,7 +130,7 @@
             </LineString>
         </Placemark>
         <Placemark id="feat_3">
-            <styleUrl>#stylesel_0</styleUrl>
+            <styleUrl>#stylesel_1</styleUrl>
             <LineString id="geom_1">
                 <coordinates>-112.2549277039738,36.08117083492122,2357 -112.2552505069063,36.08260761307279,2357</coordinates>
                 <extrude>1</extrude>
@@ -29,7 +138,7 @@
             </LineString>
         </Placemark>
         <Placemark id="feat_4">
-            <styleUrl>#stylesel_0</styleUrl>
+            <styleUrl>#stylesel_2</styleUrl>
             <LineString id="geom_2">
                 <coordinates>-112.2552505069063,36.08260761307279,2357 -112.2564540158376,36.08395660588506,2357</coordinates>
                 <extrude>1</extrude>
@@ -37,7 +146,7 @@
             </LineString>
         </Placemark>
         <Placemark id="feat_5">
-            <styleUrl>#stylesel_0</styleUrl>
+            <styleUrl>#stylesel_3</styleUrl>
             <LineString id="geom_3">
                 <coordinates>-112.2564540158376,36.08395660588506,2357 -112.2580238976449,36.08511401044813,2357</coordinates>
                 <extrude>1</extrude>
@@ -45,7 +154,7 @@
             </LineString>
         </Placemark>
         <Placemark id="feat_6">
-            <styleUrl>#stylesel_0</styleUrl>
+            <styleUrl>#stylesel_4</styleUrl>
             <LineString id="geom_4">
                 <coordinates>-112.2580238976449,36.08511401044813,2357 -112.2595218489022,36.08584355239394,2357</coordinates>
                 <extrude>1</extrude>
@@ -53,7 +162,7 @@
             </LineString>
         </Placemark>
         <Placemark id="feat_7">
-            <styleUrl>#stylesel_0</styleUrl>
+            <styleUrl>#stylesel_5</styleUrl>
             <LineString id="geom_5">
                 <coordinates>-112.2595218489022,36.08584355239394,2357 -112.2608216347552,36.08612634548589,2357</coordinates>
                 <extrude>1</extrude>
@@ -61,7 +170,7 @@
             </LineString>
         </Placemark>
         <Placemark id="feat_8">
-            <styleUrl>#stylesel_0</styleUrl>
+            <styleUrl>#stylesel_6</styleUrl>
             <LineString id="geom_6">
                 <coordinates>-112.2608216347552,36.08612634548589,2357 -112.262073428656,36.08626019085147,2357</coordinates>
                 <extrude>1</extrude>
@@ -69,7 +178,7 @@
             </LineString>
         </Placemark>
         <Placemark id="feat_9">
-            <styleUrl>#stylesel_0</styleUrl>
+            <styleUrl>#stylesel_7</styleUrl>
             <LineString id="geom_7">
                 <coordinates>-112.262073428656,36.08626019085147,2357 -112.2633204928495,36.08621519860091,2357</coordinates>
                 <extrude>1</extrude>
@@ -77,7 +186,7 @@
             </LineString>
         </Placemark>
         <Placemark id="feat_10">
-            <styleUrl>#stylesel_0</styleUrl>
+            <styleUrl>#stylesel_8</styleUrl>
             <LineString id="geom_8">
                 <coordinates>-112.2633204928495,36.08621519860091,2357 -112.2644963846444,36.08627897945274,2357</coordinates>
                 <extrude>1</extrude>
@@ -85,7 +194,7 @@
             </LineString>
         </Placemark>
         <Placemark id="feat_11">
-            <styleUrl>#stylesel_0</styleUrl>
+            <styleUrl>#stylesel_9</styleUrl>
             <LineString id="geom_9">
                 <coordinates>-112.2644963846444,36.08627897945274,2357 -112.2656969554589,36.08649599090644,2357</coordinates>
                 <extrude>1</extrude>

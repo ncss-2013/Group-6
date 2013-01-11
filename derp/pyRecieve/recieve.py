@@ -1,6 +1,7 @@
 #!python
 
 # Imports
+import copy
 import serial
 import simplekml
 
@@ -11,7 +12,6 @@ def to_hex(rgb):
 # Set up basic line style
 linestyle = simplekml.LineStyle(width=4)
 polystyle = simplekml.PolyStyle(fill=0, outline=0)
-style = simplekml.Style(linestyle=linestyle, polystyle=polystyle)
 
 # List of coords. This will be created by the reciever when complete.
 coords = [
@@ -37,7 +37,9 @@ for i in range(1, len(coords)):
 	lineseg.coords = [coords[i-1], coords[i]]
 	lineseg.extrude = 1
 	lineseg.altitudemode = simplekml.AltitudeMode.absolute
-	lineseg.style = style
+	lineseg.polystyle = polystyle
+	lineseg.linestyle = copy.deepcopy(linestyle)
+	lineseg.linestyle.color = 'ff' + to_hex((0,int((255/len(coords))*i),0))
 
 
 
