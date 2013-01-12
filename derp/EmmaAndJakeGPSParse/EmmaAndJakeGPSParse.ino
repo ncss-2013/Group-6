@@ -89,7 +89,7 @@ bool readGPSData()
  else if (strcmp(sent,"GGA")==0)
  {
     //Serial.println("Found GGA sentence");
-    //gga = ggaParse();
+    gga = ggaParse();
  }
  else
  {
@@ -124,17 +124,14 @@ bool rmcParse()
     return false;
   }
 
-//  for (int i=0; i<200;i++)
-//  wipeArray(GPSinfo[i],strlen(GPSinfo[i]));
+
   
-  Serial.println("z ");
   splitByComma(GPSinfo);
   
-  Serial.println("a ");
   /* Parse Latitude and Longitude */
   parseLongLatitude(false, lat, 0);
   parseLongLatitude(true, lon, 2);
-  Serial.println("b ");
+
 
   return true;
 }
@@ -154,7 +151,7 @@ bool ggaParse()
 
 // Checks if there is a GGA GPS fix - will drop out if fix is 0
 
- if (GGAinfo[5] == 0)
+ if (atoi(GGAinfo[5]) == 0)
  {
    Serial.println("No GPS fix");
    return false;
@@ -284,8 +281,7 @@ void splitByComma(char * array[200])
   line[length] = 0;
 
 
-  
-  Serial.println(line);
+  //Serial.println(line);
 
   
   char * pch;
