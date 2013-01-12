@@ -7,14 +7,15 @@
 #define LED 13
 #define TRANSISTOR 8
 //#define START_BYTE 97  //'a' easy to send over serial from PC for testing
-#define START_BYTE 85
+#define START_BYTE 85 //'U' 
 #define START_SENDING_BIT 1
 #define SIGNAL_OUT 2
+#define SEND_BYTES 6
 
 int c;
 unsigned long count = 0;
 
-byte data[7];
+byte data[SEND_BYTES+1];
 
 void setup()
 {
@@ -71,7 +72,7 @@ void loop()
   if (Serial.available() && !transmitting) {
     data[current_byte] = Serial.read();
     current_byte++;
-    if (current_byte >= 7) {
+    if (current_byte >= SEND_BYTES+1) {
       transmitting = true;
       receiving = false;
       current_byte = 0;
@@ -93,7 +94,7 @@ void loop()
       current_byte++;
       Serial.print("\n");
     }
-    if (current_byte >= 7) {
+    if (current_byte >= SEND_BYTES+1) {
       current_byte = 1;
       send_bit = 0;
       transmitting = false;
