@@ -3,21 +3,31 @@ import serial
 import time
 
 # Helper Functions
+def get_value():
+	# Get the value from serial, stopping on pipe.
+	buff = ''
+	b = ser.read().decode('utf-8')
+	while b != '|':
+		buff += b
+		b = ser.read.decode('utf-8')
+	return float(buff)
+
 order_dict = ['d','m','s']
 def parse_coord():
-	print('pc')
 	out = {}
-	buf = ''
+	buf = '
+	# Loop through D, M , S
 	for part in order_dict:
-		while buf[-1] != '|':
-			buf += ser.read().decode('utf-8')
-		out[part] = float(buf[:-1])
-		buf = ''
+		# Get the next value, store in the whatsit
+		out[part] = get_value()
+	# seconds are being passed *10, bring back teh decimal point
 	out['s'] /= 10
+	# Convert the DM dict to a GE decimal degree float
+	out = dms2dd(out)
 	print(out)
 	return out
 
-
+# Convert a dict of DMS to decimal degrees
 def dms2dd(dms):
 	return dms[d] + float(dms[m])/60 + float(dms[s])/3600
 
@@ -42,9 +52,35 @@ while True:
 	if ser.read(3) != b'LAT':
 		print('Error: LAT not recieved')
 		break
-
+	# Grab the latitude
 	point.latitude = parse_coord()
-	print(point.latitude)
+	print("Latitude:",point.latitude)
+	
+	# Do the same for the longitude
+	if ser.read(3) != b'LON':
+		print('Error: LON not recieved')
+		break
+	point.longitude = parse_coord()
+	print("Longitude:",point.longitude)
+	
+	# Aaaaaand the altitude. wew.
+	if ser.read(3) != b'ALT':
+		print('Error: ALT not recieved')
+		break
+	point.altitude = get_value()
+	print("Altitude:",point.altitude)
+	
+	# Temperature. I should probably make a loop for this or something
+	if ser.read(3) != b'TMP':
+		print('Error: ALT not recieved')
+		break
+	point.temperature = get_value()
+	print("Temperature:",point.temperature)
+	
+	if ser.read(3) != b'END':
+		print('Error: END not recieved')
+		break
+	print("END recieved")	
 
 	time.sleep(30)
 	break
