@@ -4,6 +4,7 @@ void setup()
 {
   randomSeed(analogRead(0));
   Serial.begin(9600);
+  Serial.println("testing... printing incorrect values");
 }
 
 void loop()
@@ -12,14 +13,14 @@ void loop()
   unsigned int alt1,temp1;
   char chksum;
   alt1 = random(64000+1);
-  temp1 = random(64+1);
+  temp1 = random(63+1);
   lat1.deg = random(4+1)-2;
   lat1.min = random(60+1);
-  lat1.sec = random(60000+1);
+  lat1.sec = random(600+1);
   long1.deg = random(4+1)-2;
   long1.min = random(60+1);
-  long1.sec = random(60000+1);
-  chksum = random(255+1);
+  long1.sec = random(600+1);
+  chksum = random(9+1);
   
   bitStream bs1,bs2;
   bs1.toBitStream(lat1,long1,alt1,temp1,chksum);

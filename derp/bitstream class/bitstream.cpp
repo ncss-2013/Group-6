@@ -45,7 +45,7 @@ void bitStream::toBitStream(ordinate _lat, ordinate _long, int _alt, int _temp, 
   msg.temp = _temp;
   msg.chksum = _chksum;
   char *charstream = (char*)&msg;
-  for (int i = 0; i < 10; i++)
+  for (int i = 0; i < NUMBYTES; i++)
   {
     stream[i] = charstream[i];
   }
