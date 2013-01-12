@@ -2,8 +2,9 @@
 #include <GlobalPositioning.h>
 #include <encoding.h>
 
-#define WAIT_TIME (12*60*1000)
-#define WARNING_TIME (5*1000)
+//#define WAIT_TIME (12*60*1000)
+#define WAIT_TIME (10000)
+#define WARNING_TIME (WAIT_TIME - 5*1000)
 
 #define WARN_BYTE 0x55
 
@@ -17,8 +18,7 @@ long originLat, originLong;
 char writeBuffer[WRITE_BUFFER_SIZE];
 
 void setup() {
-  Serial.begin(9600);
-  
+  Serial.begin(9600); 
   while (gps.readData() != 0)
     ;
   originLat = coordToSeconds(gps.latDeg, gps.latMin,
@@ -30,7 +30,7 @@ void setup() {
 void loop() {
   unsigned long waitUntil = millis() + WARNING_TIME;
   unsigned long sendAt = millis() + WAIT_TIME;
-  while (waitUntil < millis()) 
+  while (waitUntil > millis()) 
     gps.readData();
   Serial.write(WARN_BYTE);
   
@@ -42,7 +42,7 @@ void loop() {
   altitude = altitude;
   packWord(writeBuffer, latitude - originLat, longitude - originLong, altitude);
   addChecksum(writeBuffer);
-  while (sendAt < millis())
+  while (sendAt > millis())
     ;
-  Serial.write(writeBuffer, WORD_SIZE);
+  Serial.write((const uint8_t*)writeBuffer, WORD_SIZE);
 }
