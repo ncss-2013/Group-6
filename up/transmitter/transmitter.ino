@@ -1,13 +1,12 @@
 #include "timer.h"
 
 #define INTERRUPT_PIN 7
-#define SIGNAL_PIN 2
 #define MODULATED 5
 #define WAVE_OUT 11
 #define WAVE_IN 12
 #define LED 13
 #define TRANSISTOR 8
-#define START_BYTE 97
+#define START_BYTE 97  //'a' easy to send over serial from PC for testing
 
 int c;
 unsigned long count = 0;
@@ -22,7 +21,6 @@ void setup()
     pinMode(MODULATED, OUTPUT);
     pinMode(TRANSISTOR, OUTPUT);
     pinMode(LED, OUTPUT);
-    pinMode(SIGNAL_PIN, INPUT);
     
 
     // Setup the timer
