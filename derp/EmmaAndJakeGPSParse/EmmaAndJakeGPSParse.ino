@@ -11,6 +11,10 @@ SoftwareSerial GPSSerial(8, 9); // RX, TX
 latlon lat(0,0,0);
 latlon lon(0,0,0);
 
+int altitude;
+
+bool rmc;
+bool gga;
 
 //Container for split GPS data strings
 char * GPSinfo[200];
@@ -27,7 +31,7 @@ void setup()
 
 void loop()
 {
-  if (readGPSData()) {
+  if (readGPSData() && rmc) {
     Serial.print("Longitude: ");
     Serial.print(lon.degs);
     Serial.print(" ");
@@ -43,15 +47,21 @@ void loop()
     Serial.print("' ");
     Serial.print(lat.secs);
     Serial.println("\" ");
-
-
-   
+  }
+  
+  if (readGPSData() && gga)
+  {
+   Serial.print("Altitude: ");
+   Serial.println(altitude); 
   }
 }
 
 //works out what type of GPS data it is
 bool readGPSData()
 {
+  char sent[2];
+  wipeArray(sent,2);
+  
   // Read a byte from the GPS receiver
   if (readChar() != '$') {
     return false;
@@ -62,12 +72,33 @@ bool readGPSData()
   	  return false;
   }
   // Read the next three bytes which specify the header
- if (!(readChar() == 'R' && readChar() == 'M' && readChar() == 'C'))
+ 
+ for (int i = 0;i<3;i++)
+  {
+   appendChar(sent,readchar());
+  }
+ 
+ if (strcmp(sent,"RMC")==0)
  {
-  return false;
+  Serial.println("Found RMC sentence");
+  rmc = rmcParse(); // Parses the RMC data to find latitude and longitude
  }
-  Serial.println("Found RMC sentence");	// For testing
+ else if (strcmp(sent,"GGA")==0)
+ {
+    Serial.println("Found GGA sentence");
+    //Parses the GGA function to find altitude
+ }
+ else
+ {
+    return false;
+ }
+}
 
+
+
+
+bool rmcParse()
+{
   if (readChar() != ',') {
     return false;
   }
@@ -89,33 +120,26 @@ bool readGPSData()
     return false;
   }
 
-  char line[1500];
-  int length = GPSSerial.readBytesUntil('\r', line, 22);
-  line[length] = 0;
-  
-  char * pch;
-  int i = 0;
-  
-  // First call as required, just initializes the split   
-  strtok( line, "," );
-     
-  while (pch != NULL)
-  {
-    GPSinfo[i] = pch;
-    pch = strtok (NULL, ",");
-     
-       
-    i++;
-  }
+  splitByComma();
 
   /* Parse Latitude and Longitude */
   parseLongLatitude(false, lat, 0);
   parseLongLatitude(true, lon, 2);
 
-
-
   return true;
 }
+
+bool ggaParse()
+{
+ char str[50];
+ wipeArray(str,50);
+ 
+  
+  
+}
+
+
+
 
 // Define a function to read a byte from the GPS receiver
 char readChar()
@@ -133,7 +157,6 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
   char str[200];
   
   wipeArray(str,200);
-  
   
   if (isLongitude)
   {
@@ -188,41 +211,6 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
   return true;
 }
 
-//float readFloatUntilComma(void) {
-//  /* read a floating point number (something of the form of 123.4567,) */
-//  char temp;
-//  int place=10;
-//  float result=0;
-//  temp = readChar();
-//  
-//  while (isDigit(temp))
-//  {
-//    result = result*10 + (temp-'0');    // Subtracts the ASCII part of the byte - e.g. ASCII '0' will be set to binary 0.
-//    temp = readChar();                  // the current result is multiplied by 10 and the latest byte read is added.
-//  }
-//  
-//  if (temp == ',')
-//  {
-//    return result;
-//  }
-//  
-//  temp = readChar();
-//  
-//  while (isDigit(temp))
-//  {
-//    result += (temp-'0')/place;
-//    place *= 10;
-//    temp = readChar ();
-//  }
-//  
-//  return result;
-//}
-// 
-//bool isDigit(char c) {
-//  /* Is the character c within the ascii range 0-9 */
-//  return (c>='0' && c <='9');
-
-//}
 
 void appendchar(char * s, char c)
 {
@@ -237,3 +225,26 @@ void wipeArray(char * array, int length)
     array[i] = 0;
   }
 }
+
+splitByComma(char *array)
+{
+  char line[1500];
+  int length = GPSSerial.readBytesUntil('\r', line, 22);
+  line[length] = 0;
+  
+  char * pch;
+  int i = 0;
+  
+  // First call as required, just initializes the split   
+  strtok( line, "," );
+     
+  while (pch != NULL)
+  {
+    GPSinfo[i] = pch;
+    pch = strtok (NULL, ",");
+     
+       
+    i++;
+  }
+}
+
