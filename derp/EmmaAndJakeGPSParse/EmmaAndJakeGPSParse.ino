@@ -36,6 +36,7 @@ void setup()
   // Initialise software serial port for communication with the GPS
   // The default speed on the GPS is 4800 baud.
   GPSSerial.begin(4800);
+  pinMode(COMMUNICATE, OUTPUT);
 }
 
 void loop()
@@ -68,6 +69,7 @@ void loop()
   
   if (data && (rmc && gga))
   {
+    Serial.println("Sending...");
     ordinate lat2;
     lat2.deg = lat.degs;
     lat2.min = lat.mins;
@@ -78,7 +80,7 @@ void loop()
     lon2.min = lon.mins;
     lon2.sec = lon.secs;
 
-    bs.toBitStream(lat2, lon2, altitude, 0, 0);
+    bs.toBitStream(lat2, lon2, altitude, 0, 0B10101010);
     converteddatastream = bs.getStream();
 
     long time = millis();
