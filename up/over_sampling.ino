@@ -87,6 +87,7 @@ void loop()
   unsigned int b = 0;
   for (unsigned int i = 0; i < 10; i++)
   {
+    // calculates the checksum of the blocks of data
     int nibble = data[i*4] * 8 +
       data[i*4 + 1] * 4 +
       data[i*4 + 2] * 2 +
@@ -99,6 +100,7 @@ void loop()
   a %= 16;
   b %= 16;
   
+  // extracts the checksum of the received data
   int receivedA = data[8*4] * 8 +
       data[8*4 + 1] * 4 +
       data[8*4 + 2] * 2 +
@@ -109,7 +111,7 @@ void loop()
       data[9*4 + 2] * 2 +
       data[9*4 + 3];
   
-  if ((a == receivedA) && (b == receivedB))
+  if ((a == receivedA) && (b == receivedB)) // checks if the checksums match
   {
     readDataBits (&lat, 0, LAT_BITS, data, true);
     Serial.println(lat);
