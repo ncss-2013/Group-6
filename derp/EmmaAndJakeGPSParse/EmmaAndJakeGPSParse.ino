@@ -229,10 +229,10 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
 
     appendchar(str, GPSinfo[indexInGPS][0]);
     appendchar(str, GPSinfo[indexInGPS][1]);
-    
+    Serial.println(str);
     l.degs = atoi(str);
     
-    Serial.println("Lat timez");
+    Serial.print("Lat degrees: ");
     Serial.println(l.degs);
     
     wipeArray(str,200);
@@ -240,6 +240,9 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
     appendchar(str, GPSinfo[indexInGPS][2]);
     appendchar(str, GPSinfo[indexInGPS][3]);
     
+    Serial.print("Lat mins: ");
+    Serial.println(str);
+
     l.mins = atoi(str);
     
     wipeArray(str,200);
@@ -248,6 +251,10 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
     appendchar(str, GPSinfo[indexInGPS][6]);
     appendchar(str, GPSinfo[indexInGPS][7]);
     
+    Serial.print("Lat secs: ");
+    Serial.println(str);
+
+
     l.secs = atoi(str) * 60;
     
   }
@@ -264,7 +271,7 @@ void appendchar(char * s, char c)
 
 void wipeArray(char * array, int length)
 {
-  for (int i = 0;i<length;i++)
+  for (int i = 0; i < length; i++)
   {
     array[i] = 0;
   }
@@ -278,10 +285,15 @@ void splitByComma(char *array[200])
   int length = GPSSerial.readBytesUntil('\r', line,100);
   line[length] = 0;
 
+  Serial.println(length);
+
+
 // wipe junk from array to make sure no wierdness occurs
   for(int i = 0; i < length; i++)
  {
-    wipeArray(array[i], 200);
+    Serial.println(i);
+
+    wipeArray(array[i], strlen(array[i]));
 
   }
   
@@ -289,6 +301,7 @@ void splitByComma(char *array[200])
 
   
   char * pch;
+
   int i = 0;
   
   // First call as required, just initializes the split   
