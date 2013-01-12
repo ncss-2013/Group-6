@@ -6,9 +6,9 @@ void writeEEPROM(long latitude, long longitude)
 	byte temp[4] = {0,0,0,0};
 
 	// turn latitude into an array of bytes
-	temp[0] = latitude >> 24;
-	temp[1] = (latitude >> 16) & 15;
-	temp[2] = (latitude >> 8) & 15;
+	temp[0] = latitude >> 12;
+	temp[1] = (latitude >> 8) & 0b1111;
+	temp[2] = (latitude >> 4) & 0b1111;
 	temp[3] = latitude & 15;
 
 	// write latitude to EEPROM
@@ -18,9 +18,9 @@ void writeEEPROM(long latitude, long longitude)
 	EEPROM.write(3, temp[3]);
 
 	// turn longitude into an array of bytes
-	temp[0] = longitude >> 24;
-	temp[1] = (longitude >> 16) & 15;
-	temp[2] = (longitude >> 8) & 15;
+	temp[0] = longitude >> 12;
+	temp[1] = (longitude >> 8) & 0b1111;
+	temp[2] = (longitude >> 4) & 0b1111;
 	temp[3] = longitude & 15;
 
 	// write longitude to EEPROM
