@@ -9,11 +9,11 @@ int prev = -1;
 int now = 0;
 
 void ordPrint(ordinate inord){
-  Serial.print("DEG");
+  // Serial.print("DEG");
   Serial.print(inord.deg);
-  Serial.print("MIN");
+  Serial.print("|");
   Serial.print(inord.min);
-  Serial.print("SEC");
+  Serial.print("|");
   Serial.print(inord.sec);
 }
 
@@ -48,9 +48,9 @@ void setup(){
 }
 
 void loop(){
-	char ibstream[8] = {0};
+	// char ibstream[8] = {0};
 	bitStream obstream;
-	// looks for a low to high transition in the signal
+	/* looks for a low to high transition in the signal
 	while (analogRead(SENSOR_PIN) < REFV);
 	delay((DELAY*3)/2);
 	long stime = millis();
@@ -63,13 +63,28 @@ void loop(){
 			stime = millis();
 		}
 	}
-	// }
-	printBin(ibstream, 8);
-	obstream.fromBitStream(ibstream);
+	// }*/
+	ordinate lat1,long1;
+	unsigned int alt1,temp1;
+	char chksum;
+	alt1 = random(64000+1);
+	temp1 = random(63+1);
+	lat1.deg = random(4+1)-2;
+	lat1.min = random(60+1);
+	lat1.sec = random(600+1);
+	long1.deg = random(4+1)-2;
+	long1.min = random(60+1);
+	long1.sec = random(600+1);
+	chksum = random(9+1);
+	bitStream tbs;
+	tbs.toBitStream(lat1,long1,alt1,temp1,chksum);
+	obstream.fromBitStream(tbs.getStream());
+	// printBin(ibstream, 8);
+	// obstream.fromBitStream(ibstream);
 	// boolean strue = (checkSum(ibstream) == 0);
 	// if (strue)
 	printBitStream(obstream);
-
+	delay(1000);
 }
 
 /*unsigned char xorCheck(unsigned char *arr, int n)
