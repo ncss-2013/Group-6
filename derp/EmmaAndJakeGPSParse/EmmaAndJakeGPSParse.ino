@@ -20,6 +20,8 @@ bitStream bs;
 latlon lat(0,0,0);
 latlon lon(0,0,0);
 
+char line[100];
+
 int altitude;
 
 bool rmc;
@@ -44,7 +46,7 @@ void setup()
 
 void loop()
 {
-  
+  digitalWrite(COMMUNICATE, LOW); 
   bool data = readGPSData();
   if (data && rmc) {
     Serial.print("Longitude: ");
@@ -76,6 +78,9 @@ void loop()
     long lat2 = to10Secs(lat.degs,lat.mins,lat.secs);
 
     long lon2 = to10Secs(lon.degs,lon.mins,lon.secs);
+    
+    Serial.println(lat2);
+    Serial.println(lon2);
 
     bs.toBitStream(startLat-lat2, startLon-lon2, altitude, 0, 0B10101010);
     converteddatastream = bs.getStream();
@@ -185,9 +190,9 @@ bool ggaParse()
     return false;
   }
   
- 
+ Serial.println("about to split");
  splitByComma();
- 
+ Serial.println("finished split");
 
 // Checks if there is a GGA GPS fix - will drop out if fix is 0
 
@@ -196,8 +201,9 @@ bool ggaParse()
    Serial.println("No GPS fix");
    return false;
  }
+ Serial.println("about to parse a;t");
  altitude = parseAlt(GPSinfo[8]);
-  
+ Serial.println("finished parse");
   
   return true;
 }
@@ -229,19 +235,21 @@ int parseAlt(char * str)
 // Define a function to read a byte from the GPS receiver
 char readChar()
 {
+ // Serial.print("startread '");
   int c;
   while ((c = GPSSerial.read()) == -1)
     /* Do Nothing */;
-
+  Serial.write(c);
+ // Serial.println("' endread");
   return c;
 }
 
 // Define the function to read the long/lat
 bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
 {
-  char str[10];
+  char str[30];
   
-  wipeArray(str,10);
+  wipeArray(str,30);
 
 
   
@@ -268,7 +276,7 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
    
     appendchar(str, GPSinfo[indexInGPS][8]);
     
-    l.secs = atoi(str) * 60;
+    l.secs = atoi(str) * 60/100;
   
   }
   else
@@ -323,7 +331,6 @@ void splitByComma()
 {
 
 //in parameter array we have raw unsplit GPS data
-  char line[100];
   int length = GPSSerial.readBytesUntil('\r', line, 100);
   line[length] = 0;
 

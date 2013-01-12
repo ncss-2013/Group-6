@@ -3,6 +3,7 @@
 void bitStream::fromBitStream(char *stream)
 {
   message msg = *(message *)stream;
+  /*
   latitude.deg = msg.latdeg;
   if (msg.latsign) latitude.deg *= -1;
   latitude.min = msg.latmin;
@@ -12,15 +13,18 @@ void bitStream::fromBitStream(char *stream)
   if (msg.longsign) longitude.deg *= -1;
   longitude.min = msg.longmin;
   longitude.sec = msg.longsec;
-  
+  */
+  latitude = msg.lat;
+  longitude = msg.lon;
   altitude = msg.alt;
   temperature = msg.temp;
   chksum = msg.chksum;
 }
 
-void bitStream::toBitStream(ordinate _lat, ordinate _long, int _alt, int _temp, char _chksum)
+void bitStream::toBitStream(long _lat, long _long, int _alt, int _temp, char _chksum)
 {
   message msg;
+  /*
   if (_lat.deg < 0)
   {
     msg.latsign = 1;
@@ -40,7 +44,9 @@ void bitStream::toBitStream(ordinate _lat, ordinate _long, int _alt, int _temp, 
   msg.longdeg = _long.deg;
   msg.longmin = _long.min;
   msg.longsec = _long.sec;
-  
+  */
+  msg.lat = _lat;
+  msg.lon = _long;
   msg.alt = _alt;
   msg.temp = _temp;
   msg.chksum = _chksum;

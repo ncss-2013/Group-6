@@ -16,9 +16,9 @@ void ordPrint(ordinate inord){
 
 void printBitStream(bitStream ibs){
   Serial.print("~LAT");
-  ordPrint(ibs.getLatitude());
+  Serial.print(ibs.getLatitude());
   Serial.print("|LON");
-  ordPrint(ibs.getLongitude());
+  Serial.print(ibs.getLongitude());
   Serial.print("|ALT");
   Serial.print(ibs.getAltitude());
   Serial.print("|END");
