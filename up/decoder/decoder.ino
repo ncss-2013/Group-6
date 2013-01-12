@@ -15,7 +15,7 @@
 #define INT_BITS 16
 
 //creates variables
-int threshold = 511;           // The threshold at which the signal is classed as HIGH
+int threshold = 0;           // The threshold at which the signal is classed as HIGH
 int bit_limit = 48;            // The amount of bits that are allowed in the message.
 int bit_rate = 40;             // Sets the bit rate of the transmission
 int bit_delay = 1000/bit_rate; // Sets the standard delay for the bit reading
@@ -46,19 +46,32 @@ void readDataBits (int* var, int startBit, int bitCount, bool* data, bool signed
 void setup()
 {
   pinMode(MESSAGE_PIN, OUTPUT); //sets up the message pin as an output
+  pinMode(13, OUTPUT);
   Serial.begin(9600);           //sets up the serial conection to the computer
+}
+
+bool readBit()
+{
+//  Serial.println(analogRead(INPUT_PIN));
+  threshold = analogRead(A1);
+  return analogRead(INPUT_PIN) >= threshold;
 }
 
 void loop()
 {
-  while (analogRead(INPUT_PIN) < threshold);
+  digitalWrite(13, HIGH);
+  while (!readBit());
+  digitalWrite(13, LOW);
   delay (bit_delay/2);
   
   for (int counter = 0; counter < bit_limit; counter++)
   {
     delay(bit_delay);
-    data[counter] = (analogRead(INPUT_PIN) >= threshold)? true : false;
+    data[counter] = (readBit())? true : false;
+    digitalWrite(7, data[counter]);
+    Serial.print(int(data[counter]));
   }
+  Serial.println("");
   
   // calculate checksum
   unsigned int a = 0;
@@ -70,36 +83,42 @@ void loop()
       data[i*4 + 2] * 2 +
       data[i*4 + 3];
     
-    a += nibble;
-    b += a;
+    a = (a + nibble) % 16;
+    b = (b + a) % 16;
   }
   
   a %= 16;
   b %= 16;
   
-  int receivedA = data[8*4] * 8 +
-      data[8*4 + 1] * 4 +
-      data[8*4 + 2] * 2 +
-      data[8*4 + 3];
+  int receivedA = (data[10*4] << 3) +
+      (data[10*4 + 1] << 2) +
+      (data[10*4 + 2] << 1) +
+      (data[10*4 + 3]);
   
-  int receivedB = data[9*4] * 8 +
-      data[9*4 + 1] * 4 +
-      data[9*4 + 2] * 2 +
-      data[9*4 + 3];
+  int receivedB = (data[11*4] << 3) +
+      (data[11*4 + 1] << 2) +
+      (data[11*4 + 2] << 1) +
+      (data[11  *4 + 3]);
   
-  if ((a == receivedA) && (b == receivedB))
-  {
+  bool allZeroes = true;
+  for (unsigned int i = 0; (i < 48) && allZeroes; i++) {
+    if (data[i] != 0)
+      allZeroes = false;
+  }
+  
+//  if ((a == receivedA) && (b == receivedB) && !allZeroes)
+//  {
     readDataBits (&lat, 0, LAT_BITS, data, true);
-    Serial.print(lat);
+    Serial.println(lat);
     Serial.print(",");
     
     readDataBits (&lng, LAT_BITS, LONG_BITS, data, true);
-    Serial.print(lng);
+    Serial.println(lng);
     Serial.print(",");
     
     readDataBits (&alt, LAT_BITS + LONG_BITS, ALT_BITS, data, false);
     Serial.print(alt*10);
-    Serial.println(",");
-  }
+    Serial.print(",");
+//  }
 }
 
