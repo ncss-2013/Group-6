@@ -255,7 +255,7 @@ int GlobalPositioning::readData()
     return 0;
 }
 
-inline char GlobalPositioning::getChar()
+char GlobalPositioning::getChar()
 {
     char temp = 0;
     if (serial.available())
@@ -267,7 +267,7 @@ inline char GlobalPositioning::getChar()
     return temp;
 }
 
-inline void GlobalPositioning::getString(char* string, unsigned int digits)
+void GlobalPositioning::getString(char* string, unsigned int digits)
 {
     for (unsigned int i = 0; i < digits; i++)
     {
@@ -277,14 +277,14 @@ inline void GlobalPositioning::getString(char* string, unsigned int digits)
     }
 }
 
-inline void GlobalPositioning::parseFields(
+void GlobalPositioning::parseFields(
     char* source, char** fields, int nFields)
 {
     for (unsigned int i = 0; i < nFields; i++)
         strcpy(fields[i], strtok((i == 0)? source : 0, ","));
 }
 
-inline float GlobalPositioning::convertFloat(char* source)
+float GlobalPositioning::convertFloat(char* source)
 {
     // split the floating point number
     char rawBig[10];   // stores chars left of decimal point

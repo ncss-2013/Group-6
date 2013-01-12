@@ -40,16 +40,16 @@ class GlobalPositioning
     // returns a character from serial input,
     // updating the checksum value
     // checks for char availability
-    inline char getChar();
+    char getChar();
     
     // returns a C string of given length read from serial
-    inline void getString(char* string, unsigned int digits);
+    void getString(char* string, unsigned int digits);
 
     // parse csv data
-    inline void parseFields(char* source, char** fields, int nFields);
+    void parseFields(char* source, char** fields, int nFields);
 
     // convert an ASCII representation of a float to a float
-    inline float convertFloat(char* source);
+    float convertFloat(char* source);
     
     // PRIVATE VARIABLES //
     
