@@ -124,12 +124,17 @@ bool rmcParse()
     return false;
   }
 
-
+//  for (int i=0; i<200;i++)
+//  wipeArray(GPSinfo[i],strlen(GPSinfo[i]));
+  
+  Serial.println("z ");
   splitByComma(GPSinfo);
-  Serial.println(GPSinfo[0]);
+  
+  Serial.println("a ");
   /* Parse Latitude and Longitude */
   parseLongLatitude(false, lat, 0);
   parseLongLatitude(true, lon, 2);
+  Serial.println("b ");
 
   return true;
 }
@@ -226,22 +231,17 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
   else
   {
     
-
     appendchar(str, GPSinfo[indexInGPS][0]);
     appendchar(str, GPSinfo[indexInGPS][1]);
-    Serial.println(str);
+   
     l.degs = atoi(str);
     
-    Serial.print("Lat degrees: ");
-    Serial.println(l.degs);
     
     wipeArray(str,200);
     
     appendchar(str, GPSinfo[indexInGPS][2]);
     appendchar(str, GPSinfo[indexInGPS][3]);
     
-    Serial.print("Lat mins: ");
-    Serial.println(str);
 
     l.mins = atoi(str);
     
@@ -251,8 +251,6 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
     appendchar(str, GPSinfo[indexInGPS][6]);
     appendchar(str, GPSinfo[indexInGPS][7]);
     
-    Serial.print("Lat secs: ");
-    Serial.println(str);
 
 
     l.secs = atoi(str) * 60;
@@ -277,7 +275,7 @@ void wipeArray(char * array, int length)
   }
 }
 
-void splitByComma(char *array[200]) 
+void splitByComma(char * array[200]) 
 {
 
 //in parameter array we have raw unsplit GPS data
@@ -285,17 +283,7 @@ void splitByComma(char *array[200])
   int length = GPSSerial.readBytesUntil('\r', line,100);
   line[length] = 0;
 
-  Serial.println(length);
 
-
-// wipe junk from array to make sure no wierdness occurs
-  for(int i = 0; i < length; i++)
- {
-    Serial.println(i);
-
-    wipeArray(array[i], strlen(array[i]));
-
-  }
   
   Serial.println(line);
 
@@ -305,14 +293,14 @@ void splitByComma(char *array[200])
   int i = 0;
   
   // First call as required, just initializes the split   
-  strtok( line, "," );
-     
+  pch = strtok( line, "," );
+   
   while (pch != NULL)
   {
-    array[i] = pch;
+    //Serial.println(pch);
+    array[i++] = pch;
     pch = strtok (NULL, ",");
-     
-       
-    i++;
+    
+
   }
 }
