@@ -24,7 +24,7 @@ try:
             elif char in string.digits:
                 cur *= 10
                 cur += int(chr(ser.read()))
-        f = open(FILENAME, 'a').write(','.join(data)+',\n')
+        f = open(FILENAME, 'a').write(','.join(data)+','+str(time.time())+',\n')
         del f
         
         point = earth.Point()
