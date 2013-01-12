@@ -22,6 +22,15 @@ def get_grad_colour(pos):
 linestyle = simplekml.LineStyle(width=4)
 polystyle = simplekml.PolyStyle(fill=0, outline=0)
 
+stylemap = simplekml.StyleMap()
+stylemap.normalstyle.polystyle = polystyle
+stylemap.normalstyle.linestyle = linestyle
+stylemap.normalstyle.iconstyle.scale = 0
+stylemap.normalstyle.labelstyle.scale=0.5
+stylemap.highlightstyle.polystyle = polystyle
+stylemap.highlightstyle.linestyle = linestyle
+stylemap.highlightstyle.iconstyle.scale = 0
+
 # List of coords. This will be created by the reciever when complete.
 coords = [
 	(-112.2656969554589,36.09049599090644,4000),
@@ -67,14 +76,27 @@ kml = simplekml.Kml()
 
 # Loop over coords to create line segments that can be coloured individually
 for i in range(1, len(coords)):
-	lineseg = kml.newlinestring()
+
+	geom = kml.newmultigeometry(name=str(i))
+	geom.stylemap = stylemap
+
+	lineseg = geom.newlinestring()
 	lineseg.coords = [coords[i-1], coords[i]]
 	lineseg.extrude = 1
 	lineseg.altitudemode = simplekml.AltitudeMode.absolute
-	lineseg.polystyle = polystyle
-	lineseg.linestyle = copy.deepcopy(linestyle)
 	c = get_grad_colour(int((100/len(coords))*i))
 	lineseg.linestyle.color = 'ff' + to_hex(c)
+
+	p = geom.newpoint()
+	p.coords = [coords[i-1], coords[i]]
+	#p.extrude = 1
+	#p.linestyle.width = 0
+	#p.iconstyle.scale = 0
+	p.altitudemode = simplekml.AltitudeMode.absolute
+	p.description ='desc{0}'.format(i)
+
+	# WILL NEED TO ADD EXTRA POINT AT END OF TEH LINE
+
 
 
 

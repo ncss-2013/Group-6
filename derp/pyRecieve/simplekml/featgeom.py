@@ -1284,6 +1284,7 @@ class LineString(PointGeometry):
                  gxaltitudemode=None,
                  gxaltitudeoffset=None,
                  gxdraworder=None,
+                 gxlabelvisibility=None,
                  **kwargs):
         super(LineString, self).__init__(**kwargs)
         self._kml['extrude'] = extrude
@@ -1292,6 +1293,7 @@ class LineString(PointGeometry):
         self._kml['gx:altitudeMode'] = gxaltitudemode
         self._kml['gx:altitudeOffset'] = gxaltitudeoffset
         self._kml['gx:drawOrder'] = gxdraworder
+        self._kml['gx:labelVisibility'] = gxlabelvisibility
 
     @property
     def extrude(self):
@@ -1353,6 +1355,14 @@ class LineString(PointGeometry):
     @gxdraworder.setter
     def gxdraworder(self, gxdraworder):
         self._kml['gx:drawOrder'] = gxdraworder
+
+    @property
+    def gxlabelvisibility(self):
+        return self._kml['gx:labelVisibility']
+
+    @gxdraworder.setter
+    def gxlabelvisibility(self, gxlabelvisibility):
+        self._kml['gx:labelVisibility'] = gxlabelvisibility
 
     def __str__(self):
         return '<LineString id="{0}">{1}</LineString>'.format(self._id, super(LineString, self).__str__())
