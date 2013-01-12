@@ -88,7 +88,7 @@ for i in range(1, len(coords)):
 	lineseg.linestyle.color = 'ff' + to_hex(c)
 
 	p = geom.newpoint()
-	p.coords = [coords[i-1], coords[i]]
+	p.coords = [coords[i]]
 	#p.extrude = 1
 	#p.linestyle.width = 0
 	#p.iconstyle.scale = 0

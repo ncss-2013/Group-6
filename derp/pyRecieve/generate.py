@@ -5,7 +5,7 @@ def rgb2hex(rgb):
 	"Returns an RGB string from an (r, g, b) tuple"
 	return format((rgb[2]<<16)|(rgb[1]<<8)|rgb[0], '06x')
 
-class Graph(Object):
+class Graph(object):
 	def __init__(self, linewidth=4):
 		# Base KML object
 		self.kml = simplekml.Kml()
@@ -14,8 +14,8 @@ class Graph(Object):
 		self.linestyle = simplekml.LineSyle(width=linewidth)
 		self.polystyle = simplekml.PolyStyle(fill=0, outline=0)
 
-		# Keep track of previous segment
-		self.previous = None
+		# Keep track of previous segments
+		self.points = []
 		self.logfile = open('kmlgen.log', 'a')
 
 		# Log an opening statement to logfile
@@ -36,7 +36,38 @@ class Graph(Object):
 		# ^ yay ugly code
 
 	def add_point(self, point):
-		pass
+		#Create container for the point
+		geom = self.kml.newmultigeonmetry(name="temp") #TODO: add name (number/temp?)
+		geom.stylemap = self.stylemap
+
+		# Get the previous point so line can be drawn
+		prev = self.points[-1]
+
+		# Create new line segment
+		lineseg = geom.newlinestring()
+		pointcoord = (point.longitude, point.latitude, point.altitude)
+		lineseg.coords = [
+			(prev.longitude, prev.latitude, prev.altitude),
+			pointcoord
+		]
+		lineseg.extrude = 1
+		lineseg.altitudemode = simplekml.AltitudeMode.absolute
+		rgbtemp = self.get_temp_colour(point.temperature)
+		lineseg.linestyle.color = 'ff'+rgb2hex(rgbtemp)
+
+		# Create a new point (for label, etc)
+		point = geom.newpoint()
+		point.coords = [pointcoord]
+		point.altitudemode = simplekml.AltitudeMode.absolute
+
+		self.points.append(point)
+		self.logfile.write('{0} {1} {2} {3} {4}'.format(
+			point.longitude,
+			point.latitude,
+			point.altitude,
+			point.temperature,
+			point.timestamp
+		))
 
 	def save(self, filename='balloon.kml'):
 		self.kml.save(filename)
@@ -48,7 +79,7 @@ class Graph(Object):
 		r = math.sin(math.radians((pos/100)*90))*255
 		return (int(r), 0, int(b))
 
-class Point(Object):
+class Point(object):
 	def __init__(self):
 		# In decimal degrees
 		self.longitude = 0
