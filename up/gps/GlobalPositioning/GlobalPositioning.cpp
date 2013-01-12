@@ -24,6 +24,7 @@ GlobalPositioning::GlobalPositioning(byte rxPin, byte txPin, unsigned int bRate)
     longMin = 0;
     longSec = 0.0;
     longDir = 0;
+    altitude = 0.0;
     speedKnots = 0.0;
     rawDate = 0;
 }
@@ -101,7 +102,76 @@ int GlobalPositioning::readData()
     switch (type)
     {
         case GGA:   // TO BE IMPLEMENTED
+         {
+            // GGA sentences have 14 relevant fields:
+            //  0 time of fix (HHMMSS UTC)
+            //  1 latitude (DDMM.MMM)
+            //  2 latitude direction (N/S)
+            //  3 longitude (DDDMM.MM)
+            //  4 longitude direction (E/W)
+            //  5 fix quality
+            //  6 number of satellites being tracked
+            //  7 horizontal dilution of position
+            //  8 altitude in metres
+            //  9 M for metres
+            // 10 don't care
+            // 11 don't care
+            // 12 don't care
+            // 13 don't care
+
+            char data[9][13];
+            char* GGAData[9];
+            for (unsigned int i = 0; i < 9; i++)
+                GGAData[i] = (char*)data[i];
+            parseFields(buffer, GGAData, 9);
+
+            // store time of fix
+            rawTimeOfFix = atoi(GGAData[0]);
+
+            // get degrees of latitude
+            char tempLatDeg[3] = {0,0,'\0'};
+            strncpy(tempLatDeg, GGAData[1], 2);
+            latDeg = atoi(tempLatDeg);
+            GGAData[1][0] = '0';
+            GGAData[1][1] = '0';
+
+            // get minutes of latitude
+            float tempLatMin = convertFloat(GGAData[1]);
+            latMin = int(tempLatMin);
+
+            // get seconds of latitude
+            tempLatMin -= float(latMin);
+            latSec = tempLatMin * 60.0;
+
+            // get latitude direction
+            strncpy(&latDir, GGAData[2], 1);
+
+            // store longitude
+
+            // get degrees of longitude
+            char tempLongDeg[4] = {0,0,0,'\0'};
+            strncpy(tempLongDeg, GGAData[3], 3);
+            longDeg = atoi(tempLongDeg);
+            GGAData[3][0] = '0';
+            GGAData[3][1] = '0';
+            GGAData[3][2] = '0';
+
+            // get minutes of longitude
+            float tempLongMin = convertFloat(GGAData[3]);
+            longMin = int(tempLongMin);
+
+            // get seconds of longitude
+            tempLongMin -= float(longMin);
+            longSec = tempLongMin * 60.0;
+
+            // get longitude direction
+            strncpy(&longDir, GGAData[4], 1);
+
+            // get altitude in metres
+            altitude = convertFloat(GGAData[8]);
+
             break;
+         }
 
         case RMC:
         {
@@ -120,7 +190,7 @@ int GlobalPositioning::readData()
 
             char data[11][13];
             char* RMCData[11];
-            for (int i = 0; i < 11; i++)
+            for (unsigned int i = 0; i < 11; i++)
                 RMCData[i] = (char*)data[i];
             parseFields(buffer, RMCData, 11);
 

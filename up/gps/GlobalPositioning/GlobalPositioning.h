@@ -75,6 +75,9 @@ class GlobalPositioning
     float longSec;
     char longDir;
 
+    // altitude (metres)
+    float altitude;
+
     // speed in knots
     float speedKnots;
 
