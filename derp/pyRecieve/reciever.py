@@ -9,13 +9,17 @@ def get_value():
 	b = ser.read().decode('utf-8')
 	while b != '|':
 		buff += b
-		b = ser.read.decode('utf-8')
+		b = ser.read().decode('utf-8')
 	return float(buff)
 
+#hardcoded because wew
+lat = -33.888174
+lon = 151.194025
+
 order_dict = ['d','m','s']
-def parse_coord():
+def parse_coord(islat=True):
 	out = {}
-	buf = '
+	buf = ''
 	# Loop through D, M , S
 	for part in order_dict:
 		# Get the next value, store in the whatsit
@@ -23,13 +27,12 @@ def parse_coord():
 	# seconds are being passed *10, bring back teh decimal point
 	out['s'] /= 10
 	# Convert the DM dict to a GE decimal degree float
-	out = dms2dd(out)
-	print(out)
-	return out
+	delta = dms2dd(out)
+	return (lat if islat else lon) + delta
 
 # Convert a dict of DMS to decimal degrees
 def dms2dd(dms):
-	return dms[d] + float(dms[m])/60 + float(dms[s])/3600
+	return dms['d'] + float(dms['m'])/60 + float(dms['s'])/3600
 
 # Create Graph instance we can use to do stuff
 graph = earth.Graph()
@@ -80,8 +83,7 @@ while True:
 	if ser.read(3) != b'END':
 		print('Error: END not recieved')
 		break
-	print("END recieved")	
+	print("END recieved\n")	
 
-	time.sleep(30)
-	break
+	#break
 	
