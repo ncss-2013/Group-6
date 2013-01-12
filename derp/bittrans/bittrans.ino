@@ -15,10 +15,11 @@ void ordPrint(ordinate inord){
   Serial.print(inord.min);
   Serial.print("|");
   Serial.print(inord.sec);
+  Serial.print("|");
 }
 
 void printBitStream(bitStream ibs){
-  Serial.print("LAT");
+  Serial.print("~LAT");
   ordPrint(ibs.getLatitude());
   Serial.print("LON");
   ordPrint(ibs.getLongitude());
