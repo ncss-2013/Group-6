@@ -6,11 +6,15 @@
 #define WAVE_IN 12
 #define LED 13
 #define TRANSISTOR 8
-#define START_BYTE 97  //'a' easy to send over serial from PC for testing
+//#define START_BYTE 97  //'a' easy to send over serial from PC for testing
+#define START_BYTE 85
+#define START_SENDING_BIT 1
+#define SIGNAL_OUT 2
 
 int c;
 unsigned long count = 0;
 
+byte data[7];
 
 void setup()
 {
@@ -21,6 +25,7 @@ void setup()
     pinMode(MODULATED, OUTPUT);
     pinMode(TRANSISTOR, OUTPUT);
     pinMode(LED, OUTPUT);
+    pinMode(SIGNAL_OUT, OUTPUT);
     
 
     // Setup the timer
@@ -32,14 +37,14 @@ void setup()
     bit_set(TIMSK2, OCIE2A);
     
     Serial.begin(9600);
+    data[0] = START_SENDING_BIT;
 }
 
-int current_byte=0;
+int current_byte=1;
 int current_bit=0;
 bool transmitting = false;
 bool receiving = false;
 byte send_bit=0;
-byte data[9];
 //int data_received = 0;
 
 void loop() 
@@ -66,7 +71,7 @@ void loop()
   if (Serial.available() && !transmitting) {
     data[current_byte] = Serial.read();
     current_byte++;
-    if (current_byte >= 9) {
+    if (current_byte >= 7) {
       transmitting = true;
       receiving = false;
       current_byte = 0;
@@ -74,7 +79,7 @@ void loop()
   }
   if (!Serial.available() && count >= 100) {
     count = 0;
-    current_byte = 0;
+    current_byte = 1;
     current_bit = 0;
     transmitting = false;
   }
@@ -88,16 +93,18 @@ void loop()
       current_byte++;
       Serial.print("\n");
     }
-    if (current_byte >= 9) {
-      current_byte = 0;
+    if (current_byte >= 7) {
+      current_byte = 1;
       send_bit = 0;
       transmitting = false;
       digitalWrite(MODULATED, LOW);
+      digitalWrite(SIGNAL_OUT, LOW);
       digitalWrite(TRANSISTOR, HIGH);
       digitalWrite(LED, LOW);
     }
   }
   digitalWrite(MODULATED, send_bit && digitalRead(WAVE_IN));
+  digitalWrite(SIGNAL_OUT, send_bit);
 
   //digitalWrite(MODULATED, digitalRead(WAVE_IN));
 }
