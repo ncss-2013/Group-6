@@ -24,7 +24,7 @@ class Graph(object):
 
 		# Create a general style to apply to the points		
 		linestyle = simplekml.LineStyle(width=4)
-		polystyle = simplekml.PolyStyle(fill=0, outline=0)
+		polystyle = simplekml.PolyStyle(fill=0, outline=1)
 		stylemap = simplekml.StyleMap()
 		stylemap.normalstyle.polystyle = polystyle
 		stylemap.normalstyle.linestyle = linestyle
@@ -55,10 +55,8 @@ class Graph(object):
 			]
 			lineseg.extrude = 1
 			lineseg.altitudemode = simplekml.AltitudeMode.absolute
-			if point.temperature is not None:
-				rgbtemp = self.get_temp_colour(point.temperature)
-			else:
-				rgbatemp = (0, 255, 0)
+			
+			rgbtemp = (100, 149, 237) #CORNFLOUR BLUE YAAARRRGGGGGHHHHHH
 			lineseg.linestyle.color = 'ff'+rgb2hex(rgbtemp)
 
 			# Create a new point (for label, etc)
@@ -67,24 +65,18 @@ class Graph(object):
 			p.altitudemode = simplekml.AltitudeMode.absolute
 
 		self.points.append(point)
-		self.logfile.write('{0} {1} {2} {3} {4}\n'.format(
+		self.logfile.write('{0} {1} {2} {3}\n'.format(
 			point.longitude,
 			point.latitude,
 			point.altitude,
-			point.temperature,
+			#point.temperature,
 			point.timestamp
 		))
 		self.logfile.flush()
 
+
 	def save(self, filename='balloon.kml'):
 		self.kml.save(filename)
-
-	def get_temp_colour(self, pos):
-		if pos>100 or pos<0:
-			raise ValueError("`pos` value passed ({0}) is out of boundaries (0-100).".format(pos))
-		b = math.sin(math.radians(((100-pos)/100)*90))*255
-		r = math.sin(math.radians((pos/100)*90))*255
-		return (int(r), 0, int(b))
 
 	def get_time_formatted(self, timestamp, format="%H:%M:%S"):
 		lt = time.localtime(timestamp)

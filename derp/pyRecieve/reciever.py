@@ -56,14 +56,14 @@ while True:
 		print('Error: LAT not recieved')
 		break
 	# Grab the latitude
-	point.latitude = parse_coord()
+	point.latitude = parse_coord(True)
 	print("Latitude:",point.latitude)
 	
 	# Do the same for the longitude
 	if ser.read(3) != b'LON':
 		print('Error: LON not recieved')
 		break
-	point.longitude = parse_coord()
+	point.longitude = parse_coord(False)
 	print("Longitude:",point.longitude)
 	
 	# Aaaaaand the altitude. wew.
@@ -73,17 +73,21 @@ while True:
 	point.altitude = get_value()
 	print("Altitude:",point.altitude)
 	
-	# Temperature. I should probably make a loop for this or something
+	#Temperature. I should probably make a loop for this or something
 	if ser.read(3) != b'TMP':
 		print('Error: ALT not recieved')
 		break
-	point.temperature = get_value()
-	print("Temperature:",point.temperature)
+	get_value()
+	#point.temperature = get_value()
+	#print("Temperature:",point.temperature)
 	
 	if ser.read(3) != b'END':
 		print('Error: END not recieved')
 		break
 	print("END recieved\n")	
+
+	graph.add_point(point)
+	graph.save()
 
 	#break
 	
