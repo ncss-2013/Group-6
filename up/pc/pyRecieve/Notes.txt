@@ -1,0 +1,1 @@
+Late (Deg, Min, Sec*1k), Long(Deg, Min, Sec*1k), Alt, Temp

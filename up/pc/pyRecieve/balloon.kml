@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="feat_1">
+        <Style id="stylesel_1">
+            <IconStyle id="substyle_4">
+                <colorMode>normal</colorMode>
+                <scale>0</scale>
+                <heading>0</heading>
+                <Icon id="link_0">
+                    <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+                </Icon>
+            </IconStyle>
+            <LabelStyle id="substyle_5">
+                <colorMode>normal</colorMode>
+                <scale>0</scale>
+            </LabelStyle>
+            <LineStyle id="substyle_2">
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_3">
+                <color>50FF8888</color>
+                <colorMode>normal</colorMode>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="stylesel_2">
+            <IconStyle id="substyle_6">
+                <colorMode>normal</colorMode>
+                <scale>0</scale>
+                <heading>0</heading>
+                <Icon id="link_1">
+                    <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+                </Icon>
+            </IconStyle>
+            <LineStyle id="substyle_2">
+                <colorMode>normal</colorMode>
+                <width>4</width>
+            </LineStyle>
+            <PolyStyle id="substyle_3">
+                <color>50FF8888</color>
+                <colorMode>normal</colorMode>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <StyleMap id="stylesel_0">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#stylesel_1</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#stylesel_2</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Placemark id="feat_2">
+            <name>16:32:42</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_0"/>
+        </Placemark>
+        <Placemark id="feat_3">
+            <Style id="stylesel_3">
+                <LineStyle id="substyle_7">
+                    <color>fff2004e</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:32:44</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_1">
+                <LineString id="geom_2">
+                    <coordinates>-112.2656969554589,36.09049599090644,4000 -112.2656969554589,36.10049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_3">
+                    <coordinates>-112.2656969554589,36.10049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_6">
+            <Style id="stylesel_4">
+                <LineStyle id="substyle_8">
+                    <color>ff5d00ed</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:32:46</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_4">
+                <LineString id="geom_5">
+                    <coordinates>-112.2656969554589,36.10049599090644,4000 -112.2656969554589,36.12049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_6">
+                    <coordinates>-112.2656969554589,36.12049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_9">
+            <Style id="stylesel_5">
+                <LineStyle id="substyle_9">
+                    <color>ffae00b9</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:32:48</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_7">
+                <LineString id="geom_8">
+                    <coordinates>-112.2656969554589,36.12049599090644,4000 -112.2656969554589,36.13049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_9">
+                    <coordinates>-112.2656969554589,36.13049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_12">
+            <Style id="stylesel_6">
+                <LineStyle id="substyle_10">
+                    <color>fffc0023</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:32:50</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_10">
+                <LineString id="geom_11">
+                    <coordinates>-112.2656969554589,36.13049599090644,4000 -112.2656969554589,36.14049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_12">
+                    <coordinates>-112.2656969554589,36.14049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_15">
+            <Style id="stylesel_7">
+                <LineStyle id="substyle_11">
+                    <color>fff40047</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:32:52</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_13">
+                <LineString id="geom_14">
+                    <coordinates>-112.2656969554589,36.14049599090644,4000 -112.2656969554589,36.15049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_15">
+                    <coordinates>-112.2656969554589,36.15049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_18">
+            <Style id="stylesel_8">
+                <LineStyle id="substyle_12">
+                    <color>fff2004e</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:32:54</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_16">
+                <LineString id="geom_17">
+                    <coordinates>-112.2656969554589,36.15049599090644,4000 -112.2656969554589,36.16049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_18">
+                    <coordinates>-112.2656969554589,36.16049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_21">
+            <Style id="stylesel_9">
+                <LineStyle id="substyle_13">
+                    <color>fff10052</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:32:56</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_19">
+                <LineString id="geom_20">
+                    <coordinates>-112.2656969554589,36.16049599090644,4000 -112.2656969554589,36.17049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_21">
+                    <coordinates>-112.2656969554589,36.17049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_24">
+            <Style id="stylesel_10">
+                <LineStyle id="substyle_14">
+                    <color>ffd00092</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:32:58</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_22">
+                <LineString id="geom_23">
+                    <coordinates>-112.2656969554589,36.17049599090644,4000 -112.2656969554589,36.18049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_24">
+                    <coordinates>-112.2656969554589,36.18049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_27">
+            <Style id="stylesel_11">
+                <LineStyle id="substyle_15">
+                    <color>ffb400b4</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:00</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_25">
+                <LineString id="geom_26">
+                    <coordinates>-112.2656969554589,36.18049599090644,4000 -112.2656969554589,36.19049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_27">
+                    <coordinates>-112.2656969554589,36.19049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_30">
+            <Style id="stylesel_12">
+                <LineStyle id="substyle_16">
+                    <color>ff1f00fc</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:02</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_28">
+                <LineString id="geom_29">
+                    <coordinates>-112.2656969554589,36.19049599090644,4000 -112.2656969554589,36.20049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_30">
+                    <coordinates>-112.2656969554589,36.20049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_33">
+            <Style id="stylesel_13">
+                <LineStyle id="substyle_17">
+                    <color>ff3700f8</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:04</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_31">
+                <LineString id="geom_32">
+                    <coordinates>-112.2656969554589,36.20049599090644,4000 -112.2656969554589,36.21049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_33">
+                    <coordinates>-112.2656969554589,36.21049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_36">
+            <Style id="stylesel_14">
+                <LineStyle id="substyle_18">
+                    <color>fff10052</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:06</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_34">
+                <LineString id="geom_35">
+                    <coordinates>-112.2656969554589,36.21049599090644,4000 -112.2656969554589,36.22049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_36">
+                    <coordinates>-112.2656969554589,36.22049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_39">
+            <Style id="stylesel_15">
+                <LineStyle id="substyle_19">
+                    <color>fffd001b</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:08</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_37">
+                <LineString id="geom_38">
+                    <coordinates>-112.2656969554589,36.22049599090644,4000 -112.2656969554589,36.23049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_39">
+                    <coordinates>-112.2656969554589,36.23049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_42">
+            <Style id="stylesel_16">
+                <LineStyle id="substyle_20">
+                    <color>fffe0010</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:10</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_40">
+                <LineString id="geom_41">
+                    <coordinates>-112.2656969554589,36.23049599090644,4000 -112.2656969554589,36.24049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_42">
+                    <coordinates>-112.2656969554589,36.24049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_45">
+            <Style id="stylesel_17">
+                <LineStyle id="substyle_21">
+                    <color>fffe0004</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:12</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_43">
+                <LineString id="geom_44">
+                    <coordinates>-112.2656969554589,36.24049599090644,4000 -112.2656969554589,36.25049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_45">
+                    <coordinates>-112.2656969554589,36.25049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_48">
+            <Style id="stylesel_18">
+                <LineStyle id="substyle_22">
+                    <color>ffff0000</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:14</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_46">
+                <LineString id="geom_47">
+                    <coordinates>-112.2656969554589,36.25049599090644,4000 -112.2656969554589,36.26019599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_48">
+                    <coordinates>-112.2656969554589,36.26019599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_51">
+            <Style id="stylesel_19">
+                <LineStyle id="substyle_23">
+                    <color>ffce0095</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:16</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_49">
+                <LineString id="geom_50">
+                    <coordinates>-112.2656969554589,36.26019599090644,4000 -112.2656969554589,36.27029599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_51">
+                    <coordinates>-112.2656969554589,36.27029599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_54">
+            <Style id="stylesel_20">
+                <LineStyle id="substyle_24">
+                    <color>ff2f00fa</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:18</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_52">
+                <LineString id="geom_53">
+                    <coordinates>-112.2656969554589,36.27029599090644,4000 -112.2656969554589,36.28049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_54">
+                    <coordinates>-112.2656969554589,36.28049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_57">
+            <Style id="stylesel_21">
+                <LineStyle id="substyle_25">
+                    <color>ff3300f9</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:20</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_55">
+                <LineString id="geom_56">
+                    <coordinates>-112.2656969554589,36.28049599090644,4000 -112.2656969554589,36.29049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_57">
+                    <coordinates>-112.2656969554589,36.29049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_60">
+            <Style id="stylesel_22">
+                <LineStyle id="substyle_26">
+                    <color>ffdd007e</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:22</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_58">
+                <LineString id="geom_59">
+                    <coordinates>-112.2656969554589,36.29049599090644,4000 -112.2656969554589,36.30049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_60">
+                    <coordinates>-112.2656969554589,36.30049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_63">
+            <Style id="stylesel_23">
+                <LineStyle id="substyle_27">
+                    <color>ff3300f9</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:24</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_61">
+                <LineString id="geom_62">
+                    <coordinates>-112.2656969554589,36.30049599090644,4000 -112.2656969554589,36.31049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_63">
+                    <coordinates>-112.2656969554589,36.31049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_66">
+            <Style id="stylesel_24">
+                <LineStyle id="substyle_28">
+                    <color>ffd70088</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:26</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_64">
+                <LineString id="geom_65">
+                    <coordinates>-112.2656969554589,36.31049599090644,4000 -112.2656969554589,36.32049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_66">
+                    <coordinates>-112.2656969554589,36.32049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_69">
+            <Style id="stylesel_25">
+                <LineStyle id="substyle_29">
+                    <color>ffa800bf</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:28</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_67">
+                <LineString id="geom_68">
+                    <coordinates>-112.2656969554589,36.32049599090644,4000 -112.2656969554589,36.33049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_69">
+                    <coordinates>-112.2656969554589,36.33049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_72">
+            <Style id="stylesel_26">
+                <LineStyle id="substyle_30">
+                    <color>ffc9009c</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:30</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_70">
+                <LineString id="geom_71">
+                    <coordinates>-112.2656969554589,36.33049599090644,4000 -112.2656969554589,36.34049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_72">
+                    <coordinates>-112.2656969554589,36.34049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_75">
+            <Style id="stylesel_27">
+                <LineStyle id="substyle_31">
+                    <color>ff8800d7</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:33</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_73">
+                <LineString id="geom_74">
+                    <coordinates>-112.2656969554589,36.34049599090644,4000 -112.2656969554589,36.35049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_75">
+                    <coordinates>-112.2656969554589,36.35049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_78">
+            <Style id="stylesel_28">
+                <LineStyle id="substyle_32">
+                    <color>ff5200f1</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:35</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_76">
+                <LineString id="geom_77">
+                    <coordinates>-112.2656969554589,36.35049599090644,4000 -112.2656969554589,36.36049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_78">
+                    <coordinates>-112.2656969554589,36.36049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_81">
+            <Style id="stylesel_29">
+                <LineStyle id="substyle_33">
+                    <color>ff8800d7</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:37</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_79">
+                <LineString id="geom_80">
+                    <coordinates>-112.2656969554589,36.36049599090644,4000 -112.2656969554589,36.37049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_81">
+                    <coordinates>-112.2656969554589,36.37049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_84">
+            <Style id="stylesel_30">
+                <LineStyle id="substyle_34">
+                    <color>fffb002b</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:39</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_82">
+                <LineString id="geom_83">
+                    <coordinates>-112.2656969554589,36.37049599090644,4000 -112.2656969554589,36.38049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_84">
+                    <coordinates>-112.2656969554589,36.38049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_87">
+            <Style id="stylesel_31">
+                <LineStyle id="substyle_35">
+                    <color>fff10052</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:41</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_85">
+                <LineString id="geom_86">
+                    <coordinates>-112.2656969554589,36.38049599090644,4000 -112.2656969554589,36.39049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_87">
+                    <coordinates>-112.2656969554589,36.39049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_90">
+            <Style id="stylesel_32">
+                <LineStyle id="substyle_36">
+                    <color>ffbf00a8</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:43</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_88">
+                <LineString id="geom_89">
+                    <coordinates>-112.2656969554589,36.39049599090644,4000 -112.2656969554589,36.40049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_90">
+                    <coordinates>-112.2656969554589,36.40049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_93">
+            <Style id="stylesel_33">
+                <LineStyle id="substyle_37">
+                    <color>ffb700b1</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:45</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_91">
+                <LineString id="geom_92">
+                    <coordinates>-112.2656969554589,36.40049599090644,4000 -112.2656969554589,36.41049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_93">
+                    <coordinates>-112.2656969554589,36.41049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_96">
+            <Style id="stylesel_34">
+                <LineStyle id="substyle_38">
+                    <color>ffee005a</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:47</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_94">
+                <LineString id="geom_95">
+                    <coordinates>-112.2656969554589,36.41049599090644,4000 -112.2656969554589,36.42049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_96">
+                    <coordinates>-112.2656969554589,36.42049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_99">
+            <Style id="stylesel_35">
+                <LineStyle id="substyle_39">
+                    <color>ff5600ef</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:49</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_97">
+                <LineString id="geom_98">
+                    <coordinates>-112.2656969554589,36.42049599090644,4000 -112.2656969554589,36.43049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_99">
+                    <coordinates>-112.2656969554589,36.43049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_102">
+            <Style id="stylesel_36">
+                <LineStyle id="substyle_40">
+                    <color>ff8500d9</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:51</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_100">
+                <LineString id="geom_101">
+                    <coordinates>-112.2656969554589,36.43049599090644,4000 -112.2656969554589,36.44049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_102">
+                    <coordinates>-112.2656969554589,36.44049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+        <Placemark id="feat_105">
+            <Style id="stylesel_37">
+                <LineStyle id="substyle_41">
+                    <color>ff0000ff</color>
+                    <colorMode>normal</colorMode>
+                </LineStyle>
+            </Style>
+            <name>16:33:53</name>
+            <styleUrl>#stylesel_0</styleUrl>
+            <MultiGeometry id="geom_103">
+                <LineString id="geom_104">
+                    <coordinates>-112.2656969554589,36.44049599090644,4000 -112.2656969554589,36.45049599090644,4000</coordinates>
+                    <extrude>1</extrude>
+                    <altitudeMode>absolute</altitudeMode>
+                </LineString>
+                <Point id="geom_105">
+                    <coordinates>-112.2656969554589,36.45049599090644,4000</coordinates>
+                    <altitudeMode>absolute</altitudeMode>
+                </Point>
+            </MultiGeometry>
+        </Placemark>
+    </Document>
+</kml>
