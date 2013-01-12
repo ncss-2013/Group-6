@@ -1,3 +1,4 @@
+import math
 import simplekml
 import time
 
@@ -11,7 +12,7 @@ class Graph(object):
 		self.kml = simplekml.Kml()
 
 		# Basic styles
-		self.linestyle = simplekml.LineSyle(width=linewidth)
+		self.linestyle = simplekml.LineStyle(width=linewidth)
 		self.polystyle = simplekml.PolyStyle(fill=0, outline=0)
 
 		# Keep track of previous segments
@@ -28,7 +29,7 @@ class Graph(object):
 		stylemap.normalstyle.polystyle = polystyle
 		stylemap.normalstyle.linestyle = linestyle
 		stylemap.normalstyle.iconstyle.scale = 0
-		stylemap.normalstyle.labelstyle.scale = 0.5
+		stylemap.normalstyle.labelstyle.scale = 0
 		stylemap.highlightstyle.polystyle = polystyle
 		stylemap.highlightstyle.linestyle = linestyle
 		stylemap.highlightstyle.iconstyle.scale = 0
@@ -37,31 +38,33 @@ class Graph(object):
 
 	def add_point(self, point):
 		#Create container for the point
-		geom = self.kml.newmultigeonmetry(name="temp") #TODO: add name (number/temp?)
+		ftime = self.get_time_formatted(point.timestamp)
+		geom = self.kml.newmultigeometry(name=ftime) #TODO: add name (number/temp?)
 		geom.stylemap = self.stylemap
 
 		# Get the previous point so line can be drawn
-		prev = self.points[-1]
+		if len(self.points) != 0:
+			prev = self.points[-1]
 
-		# Create new line segment
-		lineseg = geom.newlinestring()
-		pointcoord = (point.longitude, point.latitude, point.altitude)
-		lineseg.coords = [
-			(prev.longitude, prev.latitude, prev.altitude),
-			pointcoord
-		]
-		lineseg.extrude = 1
-		lineseg.altitudemode = simplekml.AltitudeMode.absolute
-		rgbtemp = self.get_temp_colour(point.temperature)
-		lineseg.linestyle.color = 'ff'+rgb2hex(rgbtemp)
+			# Create new line segment
+			lineseg = geom.newlinestring()
+			pointcoord = (point.longitude, point.latitude, point.altitude)
+			lineseg.coords = [
+				(prev.longitude, prev.latitude, prev.altitude),
+				pointcoord
+			]
+			lineseg.extrude = 1
+			lineseg.altitudemode = simplekml.AltitudeMode.absolute
+			rgbtemp = self.get_temp_colour(point.temperature)
+			lineseg.linestyle.color = 'ff'+rgb2hex(rgbtemp)
 
-		# Create a new point (for label, etc)
-		point = geom.newpoint()
-		point.coords = [pointcoord]
-		point.altitudemode = simplekml.AltitudeMode.absolute
+			# Create a new point (for label, etc)
+			p = geom.newpoint()
+			p.coords = [pointcoord]
+			p.altitudemode = simplekml.AltitudeMode.absolute
 
 		self.points.append(point)
-		self.logfile.write('{0} {1} {2} {3} {4}'.format(
+		self.logfile.write('{0} {1} {2} {3} {4}\n'.format(
 			point.longitude,
 			point.latitude,
 			point.altitude,
@@ -78,6 +81,10 @@ class Graph(object):
 		b = math.sin(math.radians(((100-pos)/100)*90))*255
 		r = math.sin(math.radians((pos/100)*90))*255
 		return (int(r), 0, int(b))
+
+	def get_time_formatted(self, timestamp, format="%H:%M:%S"):
+		lt = time.localtime(timestamp)
+		return time.strftime(format, lt)
 
 class Point(object):
 	def __init__(self):
