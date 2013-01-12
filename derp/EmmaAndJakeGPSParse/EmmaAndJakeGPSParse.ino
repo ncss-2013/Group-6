@@ -65,22 +65,26 @@ void loop()
    Serial.print("Altitude: ");
    Serial.println(altitude); 
   }
-  ordinate lat2;
-  lat2.deg = lat.degs;
-  lat2.min = lat.mins;
-  lat2.sec = lat.secs;
-
-  ordinate lon2;
-  lon2.deg = lon.degs;
-  lon2.min = lon.mins;
-  lon2.sec = lon.secs;
-
-  bs.toBitStream(lat2, lon2, altitude, 0, 0);
-  converteddatastream = bs.getStream();
-
-  long time = millis();
-  digitalWrite(COMMUNICATE,HIGH);
   
+  if (data && (rmc && gga))
+  {
+    ordinate lat2;
+    lat2.deg = lat.degs;
+    lat2.min = lat.mins;
+    lat2.sec = lat.secs;
+
+    ordinate lon2;
+    lon2.deg = lon.degs;
+    lon2.min = lon.mins;
+    lon2.sec = lon.secs;
+
+    bs.toBitStream(lat2, lon2, altitude, 0, 0);
+    converteddatastream = bs.getStream();
+
+    long time = millis();
+    digitalWrite(COMMUNICATE,HIGH);
+  
+
   for (int i = 0; i < 8; i++)
   {
     //*
@@ -92,9 +96,9 @@ void loop()
       while (millis()-time < DELAY);
       digitalWrite(COMMUNICATE,bit);
       time = millis();
+      }
     }
   }
-
 }
 
 //works out what type of GPS data it is
