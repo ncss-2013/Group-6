@@ -18,7 +18,9 @@ bool gga;
 
 //Container for split GPS data strings
 char * GPSinfo[200];
+
 char * GGAinfo[200];
+
  
 void setup()
 {
@@ -86,13 +88,14 @@ bool readGPSData()
  }
  else if (strcmp(sent,"GGA")==0)
  {
-    Serial.println("Found GGA sentence");
-    gga = ggaParse();
+    //Serial.println("Found GGA sentence");
+    //gga = ggaParse();
  }
  else
  {
     return false;
  }
+ return true;
 }
 
 
@@ -121,8 +124,9 @@ bool rmcParse()
     return false;
   }
 
-  splitByComma(GPSinfo);
 
+  splitByComma(GPSinfo);
+  Serial.println(GPSinfo[0]);
   /* Parse Latitude and Longitude */
   parseLongLatitude(false, lat, 0);
   parseLongLatitude(true, lon, 2);
@@ -151,7 +155,7 @@ bool ggaParse()
    return false;
  }
  
- altitude = parseAlt(GGAinfo[7]); 
+  altitude = parseAlt(GGAinfo[7]);
   return true;
 }
 
@@ -160,8 +164,15 @@ int parseAlt(char * str)
 {
   char temp[10];
   int i = 0;
-  while(str[i] != '.')
+  int length = strlen(str);
+  
+  for (i=0;i<length;i++)
   {
+    if (str[i] == '.')
+    {
+      break;
+    }
+    
     appendchar(temp,str[i]);
   }
   return atoi(temp);
@@ -214,10 +225,14 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
   }
   else
   {
+    
     appendchar(str, GPSinfo[indexInGPS][0]);
     appendchar(str, GPSinfo[indexInGPS][1]);
     
     l.degs = atoi(str);
+    
+    Serial.println("Lat timez");
+    Serial.println(l.degs);
     
     wipeArray(str,200);
     
@@ -257,8 +272,9 @@ void wipeArray(char * array, int length)
 void splitByComma(char *array[200])
 {
   char line[1500];
-  int length = GPSSerial.readBytesUntil('\r', line, 22);
+  int length = GPSSerial.readBytesUntil('\r', line,100);
   line[length] = 0;
+  
   Serial.println(line);
   
   char * pch;
