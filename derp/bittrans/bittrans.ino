@@ -1,20 +1,17 @@
 // Search for a low to high transition and read the bit into 3 10-long byte arrays
 
 #include "bitstream.h"
+#include "checksum.h"
 #define SENSOR_PIN 2
-#define REFV 700
+#define REF_PIN 1
 #define DELAY (1000/40)
 
-int prev = -1;
-int now = 0;
-
 void ordPrint(ordinate inord){
-  // Serial.print("DEG");
-  Serial.print(inord.deg);
-  Serial.print("|");
-  Serial.print(inord.min);
-  Serial.print("|");
-  Serial.print(inord.sec);
+	Serial.print(inord.deg);
+	Serial.print("|");
+	Serial.print(inord.min);
+	Serial.print("|");
+	Serial.print(inord.sec);
 }
 
 void printBitStream(bitStream ibs){
@@ -31,8 +28,7 @@ void printBitStream(bitStream ibs){
 
 void printBin(char *iarr, int len){
 	for (int i = 0; i < len; i++){
-    	for (int j = 0; j < 8; j++)
-    	{
+    	for (int j = 0; j < 8; j++){
     		char cbyte = iarr[i];
     		char mask = (1<<j);
     		bool bit = !!(cbyte&mask);
@@ -48,9 +44,10 @@ void setup(){
 }
 
 void loop(){
-	// char ibstream[8] = {0};
+	char ibstream[8] = {0};
+	int REFV = analogRead(REF_PIN);
 	bitStream obstream;
-	/* looks for a low to high transition in the signal
+	// looks for a low to high transition in the signal
 	while (analogRead(SENSOR_PIN) < REFV);
 	delay((DELAY*3)/2);
 	long stime = millis();
@@ -63,8 +60,8 @@ void loop(){
 			stime = millis();
 		}
 	}
-	// }*/
-	ordinate lat1,long1;
+	// }
+	/*ordinate lat1,long1;
 	unsigned int alt1,temp1;
 	char chksum;
 	alt1 = random(64000+1);
@@ -78,13 +75,13 @@ void loop(){
 	chksum = random(9+1);
 	bitStream tbs;
 	tbs.toBitStream(lat1,long1,alt1,temp1,chksum);
-	obstream.fromBitStream(tbs.getStream());
+	obstream.fromBitStream(tbs.getStream());*/
 	// printBin(ibstream, 8);
-	// obstream.fromBitStream(ibstream);
-	// boolean strue = (checkSum(ibstream) == 0);
-	// if (strue)
-	printBitStream(obstream);
-	delay(1000);
+	obstream.fromBitStream(ibstream);
+	boolean strue = (checkSum(ibstream) == 0);
+	if (strue)
+		printBitStream(obstream);
+	// delay(1000);
 }
 
 /*unsigned char xorCheck(unsigned char *arr, int n)
