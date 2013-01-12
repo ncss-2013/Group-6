@@ -226,6 +226,7 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
   else
   {
     
+
     appendchar(str, GPSinfo[indexInGPS][0]);
     appendchar(str, GPSinfo[indexInGPS][1]);
     
@@ -269,13 +270,23 @@ void wipeArray(char * array, int length)
   }
 }
 
-void splitByComma(char *array[200])
+void splitByComma(char *array[200]) 
 {
+
+//in parameter array we have raw unsplit GPS data
   char line[1500];
   int length = GPSSerial.readBytesUntil('\r', line,100);
   line[length] = 0;
+
+// wipe junk from array to make sure no wierdness occurs
+  for(int i = 0; i < length; i++)
+ {
+    wipeArray(array[i], 200);
+
+  }
   
   Serial.println(line);
+
   
   char * pch;
   int i = 0;
