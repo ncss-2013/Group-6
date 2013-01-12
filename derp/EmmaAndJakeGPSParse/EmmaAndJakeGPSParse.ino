@@ -32,7 +32,9 @@ void setup()
 
 void loop()
 {
-  if (readGPSData() && rmc) {
+  
+  bool data = readGPSData();
+  if (data && rmc) {
     Serial.print("Longitude: ");
     Serial.print(lon.degs);
     Serial.print(" ");
@@ -50,7 +52,7 @@ void loop()
     Serial.println("\" ");
   }
   
-  if (readGPSData() && gga)
+  if (data && gga)
   {
    Serial.print("Altitude: ");
    Serial.println(altitude); 
@@ -86,7 +88,7 @@ bool readGPSData()
  }
  else if (strcmp(sent,"GGA")==0)
  {
-    //Serial.println("Found GGA sentence");
+    Serial.println("Found GGA sentence");
     gga = ggaParse();
  }
  else
@@ -153,8 +155,16 @@ bool ggaParse()
    Serial.println("No GPS fix");
    return false;
  }
- 
-  altitude = parseAlt(GPSinfo[7]);
+ Serial.println("about to parse int");
+ altitude = parseAlt(GPSinfo[8]);
+  
+  //byte f = readChar();
+  //Serial.print("Parsing alt: (");
+  //for (int i = 0; i < strlen(GPSinfo[8]); i++){
+  //Serial.write(GPSinfo[8][i]);
+  //}
+  //Serial.println(")");
+  
   return true;
 }
 
@@ -162,6 +172,7 @@ bool ggaParse()
 int parseAlt(char * str)
 {
   char temp[10];
+  for (int i = 0; i < 10; i++) temp[i] = 0; 
   int i = 0;
   int length = strlen(str);
   
@@ -174,6 +185,8 @@ int parseAlt(char * str)
     
     appendchar(temp,str[i]);
   }
+  temp[i] = '\0';
+  //Serial.println(temp);
   return atoi(temp);
 }
 
@@ -183,7 +196,7 @@ int parseAlt(char * str)
 char readChar()
 {
   int c;
-  while ((c = /*GPS*/Serial.read()) == -1)
+  while ((c = GPSSerial.read()) == -1)
     /* Do Nothing */;
 
   return c;
@@ -200,7 +213,7 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
   
   if (isLongitude)
   {
-    Serial.println(GPSinfo[indexInGPS]);
+    //Serial.println(GPSinfo[indexInGPS]);
     appendchar(str, GPSinfo[indexInGPS][0]);
     appendchar(str, GPSinfo[indexInGPS][1]);
     appendchar(str, GPSinfo[indexInGPS][2]);
