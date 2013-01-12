@@ -17,9 +17,7 @@ bool rmc;
 bool gga;
 
 //Container for split GPS data strings
-char * GPSinfo[200];
-
-char * GGAinfo[200];
+char * GPSinfo[20];
 
  
 void setup()
@@ -62,8 +60,8 @@ void loop()
 //works out what type of GPS data it is
 bool readGPSData()
 {
-  char sent[2];
-  wipeArray(sent,2);
+  char sent[10];
+  wipeArray(sent, sizeof(sent) / sizeof(char));
   
   // Read a byte from the GPS receiver
   if (readChar() != '$') {
@@ -100,7 +98,6 @@ bool readGPSData()
 
 
 
-
 bool rmcParse()
 {
   if (readChar() != ',') {
@@ -113,7 +110,7 @@ bool rmcParse()
   }
 
   /* Check if we have a gps fix */
-  if (!(readChar() == 'A'))
+  if (readChar() != 'A')
   {
     Serial.println("Fell out without active GPS");
     return false;
@@ -126,7 +123,7 @@ bool rmcParse()
 
 
   
-  splitByComma(GPSinfo);
+  splitByComma();
   
   /* Parse Latitude and Longitude */
   parseLongLatitude(false, lat, 0);
@@ -146,18 +143,18 @@ bool ggaParse()
   }
   
  
- splitByComma(GGAinfo);
+ splitByComma();
  
 
 // Checks if there is a GGA GPS fix - will drop out if fix is 0
 
- if (atoi(GGAinfo[5]) == 0)
+ if (atoi(GPSinfo[5]) == 0)
  {
    Serial.println("No GPS fix");
    return false;
  }
  
-  altitude = parseAlt(GGAinfo[7]);
+  altitude = parseAlt(GPSinfo[7]);
   return true;
 }
 
@@ -186,7 +183,7 @@ int parseAlt(char * str)
 char readChar()
 {
   int c;
-  while ((c = GPSSerial.read()) == -1)
+  while ((c = /*GPS*/Serial.read()) == -1)
     /* Do Nothing */;
 
   return c;
@@ -195,26 +192,29 @@ char readChar()
 // Define the function to read the long/lat
 bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
 {
-  char str[200];
+  char str[10];
   
-  wipeArray(str,200);
+  wipeArray(str,10);
+
+
   
   if (isLongitude)
   {
+    Serial.println(GPSinfo[indexInGPS]);
     appendchar(str, GPSinfo[indexInGPS][0]);
     appendchar(str, GPSinfo[indexInGPS][1]);
     appendchar(str, GPSinfo[indexInGPS][2]);
     
     l.degs = atoi(str);
     
-    wipeArray(str,200);
+    wipeArray(str,10);
    
     
     appendchar(str, GPSinfo[indexInGPS][3]);
     appendchar(str, GPSinfo[indexInGPS][4]);
     
     l.mins = atoi(str);
-    wipeArray(str,200);
+    wipeArray(str,10);
   
     appendchar(str, GPSinfo[indexInGPS][6]);
 
@@ -234,7 +234,7 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
     l.degs = atoi(str);
     
     
-    wipeArray(str,200);
+    wipeArray(str,10);
     
     appendchar(str, GPSinfo[indexInGPS][2]);
     appendchar(str, GPSinfo[indexInGPS][3]);
@@ -242,7 +242,7 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
 
     l.mins = atoi(str);
     
-    wipeArray(str,200);
+    wipeArray(str,10);
     
     appendchar(str, GPSinfo[indexInGPS][5]);
     appendchar(str, GPSinfo[indexInGPS][6]);
@@ -260,8 +260,9 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
 
 void appendchar(char * s, char c)
 {
-   s[strlen(s)] = c;
-   s[(strlen(s)+1)] = 0;
+   int l = strlen(s);
+   s[l] = c;
+   s[l+1] = 0;
 }
 
 void wipeArray(char * array, int length)
@@ -272,18 +273,16 @@ void wipeArray(char * array, int length)
   }
 }
 
-void splitByComma(char * array[200]) 
+void splitByComma() 
 {
 
 //in parameter array we have raw unsplit GPS data
-  char line[1500];
-  int length = GPSSerial.readBytesUntil('\r', line,100);
+  char line[100];
+  int length = GPSSerial.readBytesUntil('\r', line, 100);
   line[length] = 0;
 
+  Serial.println(line);
 
-  //Serial.println(line);
-
-  
   char * pch;
 
   int i = 0;
@@ -294,9 +293,7 @@ void splitByComma(char * array[200])
   while (pch != NULL)
   {
     //Serial.println(pch);
-    array[i++] = pch;
+    GPSinfo[i++] = pch;
     pch = strtok (NULL, ",");
-    
-
   }
 }
