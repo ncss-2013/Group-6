@@ -55,7 +55,10 @@ class Graph(object):
 			]
 			lineseg.extrude = 1
 			lineseg.altitudemode = simplekml.AltitudeMode.absolute
-			rgbtemp = self.get_temp_colour(point.temperature)
+			if point.temperature is not None:
+				rgbtemp = self.get_temp_colour(point.temperature)
+			else:
+				rgbatemp = (0, 255, 0)
 			lineseg.linestyle.color = 'ff'+rgb2hex(rgbtemp)
 
 			# Create a new point (for label, etc)
@@ -95,6 +98,6 @@ class Point(object):
 		# Absolute above sea level
 		self.altitude = 0
 		# 0 - 100
-		self.temperature = 0
+		self.temperature = None
 		# *NIX timestamp (time.time())
 		self.timestamp = 0

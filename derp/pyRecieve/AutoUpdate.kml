@@ -8,7 +8,7 @@
 			<Link>
 				<href>E:\Group Project\pyRecieve\balloon.kml</href>
 				<refreshMode>onInterval</refreshMode>
-				<refreshInterval>10</refreshInterval>
+				<refreshInterval>1</refreshInterval>
 			</Link>
 		</NetworkLink>
 	</Document>

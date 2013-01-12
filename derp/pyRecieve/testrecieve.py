@@ -1,7 +1,7 @@
 #!python
 
 # Imports
-import Earth
+import earth
 import time
 
 # List of coords. This will be created by the reciever when complete.
@@ -44,9 +44,9 @@ tempdata = [
 	(-112.2656969554589,36.45049599090644,4000, 100)
 ]
 
-graph = Earth.Graph()
+graph = earth.Graph()
 for datapoint in tempdata:
-	point = Earth.Point()
+	point = earth.Point()
 	point.longitude = datapoint[0]
 	point.latitude = datapoint[1]
 	point.altitude = datapoint[2]
@@ -56,3 +56,5 @@ for datapoint in tempdata:
 	graph.add_point(point)
 
 	graph.save()
+
+	time.sleep(2)
