@@ -13,8 +13,8 @@ def get_value():
 	return float(buff)
 
 #hardcoded because wew
-#lat = -33.888174
-#lon = 151.194025
+lat = -33.888174
+lon = 151.194025
 
 order_dict = ['d','m','s']
 def parse_coord(islat=True):
@@ -27,7 +27,8 @@ def parse_coord(islat=True):
 	# seconds are being passed *10, bring back teh decimal point
 	out['s'] /= 10
 	# Convert the DM dict to a GE decimal degree float
-	return dms2dd(out)
+	delta = dms2dd(out)
+	return (lat if islat else lon) + delta
 
 # Convert a dict of DMS to decimal degrees
 def dms2dd(dms):
@@ -45,7 +46,7 @@ time.sleep(2)
 
 
 
-# Listen on serial until program is quit
+# Listen on serial untill program is quit
 while True:
 	# Wait for start char
 	while ser.read() != b'~': pass
