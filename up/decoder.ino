@@ -18,7 +18,7 @@
 int threshold = 511;           // The threshold at which the signal is classed as HIGH
 int bit_limit = 48;            // The amount of bits that are allowed in the message.
 int bit_rate = 40;             // Sets the bit rate of the transmission
-int bit_delay = 1000/bit_rate;
+int bit_delay = 1000/bit_rate; // Sets the standard delay for the bit reading
 
 bool data[48];
 
@@ -60,16 +60,46 @@ void loop()
     data[counter] = (analogRead(INPUT_PIN) >= threshold)? true : false;
   }
   
-  readDataBits (&lat, 0, LAT_BITS, data, true);
-  Serial.println(lat);
-  Serial.print(",");
+  // calculate checksum
+  unsigned int a = 0;
+  unsigned int b = 0;
+  for (unsigned int i = 0; i < 10; i++)
+  {
+    int nibble = data[i*4] * 8 +
+      data[i*4 + 1] * 4 +
+      data[i*4 + 2] * 2 +
+      data[i*4 + 3];
+    
+    a += nibble;
+    b += a;
+  }
   
-  readDataBits (&lng, LAT_BITS, LONG_BITS, data, true);
-  Serial.println(lng);
-  Serial.print(",");
+  a %= 16;
+  b %= 16;
   
-  readDataBits (&alt, LAT_BITS + LONG_BITS, ALT_BITS, data, false);
-  Serial.print(alt*10);
-  Serial.print(",");
+  int receivedA = data[8*4] * 8 +
+      data[8*4 + 1] * 4 +
+      data[8*4 + 2] * 2 +
+      data[8*4 + 3];
+  
+  int receivedB = data[9*4] * 8 +
+      data[9*4 + 1] * 4 +
+      data[9*4 + 2] * 2 +
+      data[9*4 + 3];
+  
+  if ((a == receivedA) && (b == receivedB))
+  {
+    readDataBits (&lat, 0, LAT_BITS, data, true);
+    Serial.println(lat);
+    Serial.print(",");
+    
+    readDataBits (&lng, LAT_BITS, LONG_BITS, data, true);
+    Serial.println(lng);
+    Serial.print(",");
+    
+    readDataBits (&alt, LAT_BITS + LONG_BITS, ALT_BITS, data, false);
+    Serial.print(alt*10);
+    Serial.print(",");
+  }
 }
 
