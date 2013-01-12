@@ -87,7 +87,7 @@ bool readGPSData()
  else if (strcmp(sent,"GGA")==0)
  {
     Serial.println("Found GGA sentence");
-    //Parses the GGA function to find altitude
+    gga = ggaParse();
  }
  else
  {
@@ -130,18 +130,31 @@ bool rmcParse()
   return true;
 }
 
+
+
 bool ggaParse()
-{ 
+{
+  if (readChar() != ',')
+  {
+    return false;
+  }
+  
+ 
  splitByComma(GGAinfo);
  
- if (GGAinfo[7] == 0)
+
+// Checks if there is a GGA GPS fix - will drop out if fix is 0
+
+ if (GGAinfo[5] == 0)
  {
+   Serial.println("No GPS fix");
    return false;
  }
  
  altitude = parseAlt(GGAinfo[7]); 
   return true;
 }
+
 
 int parseAlt(char * str)
 {
@@ -246,6 +259,7 @@ void splitByComma(char *array[200])
   char line[1500];
   int length = GPSSerial.readBytesUntil('\r', line, 22);
   line[length] = 0;
+  Serial.println(line);
   
   char * pch;
   int i = 0;
@@ -262,4 +276,3 @@ void splitByComma(char *array[200])
     i++;
   }
 }
-
