@@ -1,9 +1,9 @@
 
-/* Checks the incoming signal for if it is above a set threshold,
-   finds the start bit and then prints the incoming signal as
-   binary in the serial monitor.
-   After this, the program will automatically ignore the end bit
-   and revert to the original settings, wating for the next transmission
+/* Checks if thers is an incoming signal from the balloon. If thers is, the data is written to an array
+   called "data" and this is used later in calculations. The arduino then calculates the checksum of the
+   message and compares this to the checksum taken by the GPS arduino (in the balloon). If the checksums
+   match, the message is interpreted into latitude, longitude and altitude and sends this to a computer
+   via serial for it to be used in the pythin program.
 */
 
 // Pin definitions
