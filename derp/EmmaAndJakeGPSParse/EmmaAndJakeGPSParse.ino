@@ -4,10 +4,13 @@
 #include <stdlib.h>
 #include "bitstream.h"
 
+#define to10Secs(d,m,s) ((s)+(m*60*10)+(d*60*60*10))
+
+long startLat = to10Secs(33,0,0);
+long startLon = to10Secs(151,0,0);
 
 #define COMMUNICATE (13)
 #define DELAY (1000/40)
-
 
 // Declare a software serial port to interface with the GPS unit.
 // The receive and transmit pins are 8 and 9 respectively.
@@ -70,17 +73,11 @@ void loop()
   if (data && (rmc && gga))
   {
     Serial.println("Sending...");
-    ordinate lat2;
-    lat2.deg = lat.degs;
-    lat2.min = lat.mins;
-    lat2.sec = lat.secs;
+    long lat2 = to10Secs(lat.degs,lat.mins,lat.secs);
 
-    ordinate lon2;
-    lon2.deg = lon.degs;
-    lon2.min = lon.mins;
-    lon2.sec = lon.secs;
+    long lon2 = to10Secs(lon.degs,lon.mins,lon.secs);
 
-    bs.toBitStream(lat2, lon2, altitude, 0, 0B10101010);
+    bs.toBitStream(startLat-lat2, startLon-lon2, altitude, 0, 0B10101010);
     converteddatastream = bs.getStream();
 
     long time = millis();
