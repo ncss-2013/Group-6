@@ -3,29 +3,30 @@
 #include "bitstream.h"
 #define SENSOR_PIN 2
 #define REFV 700
-#define DELAY (1000/10)
+#define DELAY (1000/40)
 
 int prev = -1;
 int now = 0;
 
 void ordPrint(ordinate inord){
-  Serial.print("Degrees: ");
-  Serial.println(inord.deg);
-  Serial.print("Minutes: ");
-  Serial.println(inord.min);
-  Serial.print("Seconds: ");
-  Serial.println(inord.sec);
+  Serial.print("DEG");
+  Serial.print(inord.deg);
+  Serial.print("MIN");
+  Serial.print(inord.min);
+  Serial.print("SEC");
+  Serial.print(inord.sec);
 }
 
 void printBitStream(bitStream ibs){
-  Serial.println("\nLatitude:\n");
+  Serial.print("LAT");
   ordPrint(ibs.getLatitude());
-  Serial.println("\nLongitude:\n");
+  Serial.print("LON");
   ordPrint(ibs.getLongitude());
-  Serial.print("Altitude: ");
-  Serial.println(ibs.getAltitude());
-  Serial.print("Temperature:");
-  Serial.println(ibs.getTemperature());
+  Serial.print("ALT");
+  Serial.print(ibs.getAltitude());
+  Serial.print("TMP");
+  Serial.print(ibs.getTemperature());
+  Serial.print("END");
 }
 
 void printBin(char *iarr, int len){
