@@ -2,11 +2,17 @@
 #include <string.h>
 #include "latlon.h"
 #include <stdlib.h>
+#include "bitstream.h"
+
+
+#define COMMUNICATE (13)
+#define DELAY (1000/40)
 
 
 // Declare a software serial port to interface with the GPS unit.
 // The receive and transmit pins are 8 and 9 respectively.
 SoftwareSerial GPSSerial(8, 9); // RX, TX
+bitStream bs;
 
 latlon lat(0,0,0);
 latlon lon(0,0,0);
@@ -15,6 +21,8 @@ int altitude;
 
 bool rmc;
 bool gga;
+
+char * converteddatastream;
 
 //Container for split GPS data strings
 char * GPSinfo[20];
@@ -57,6 +65,36 @@ void loop()
    Serial.print("Altitude: ");
    Serial.println(altitude); 
   }
+  ordinate lat2;
+  lat2.deg = lat.degs;
+  lat2.min = lat.mins;
+  lat2.sec = lat.secs;
+
+  ordinate lon2;
+  lon2.deg = lon.degs;
+  lon2.min = lon.mins;
+  lon2.sec = lon.secs;
+
+  bs.toBitStream(lat2, lon2, altitude, 0, 0);
+  converteddatastream = bs.getStream();
+
+  long time = millis();
+  digitalWrite(COMMUNICATE,HIGH);
+  
+  for (int i = 0; i < 8; i++)
+  {
+    //*
+    for (int k = 0; k < 8; k++)
+    {
+      int bitmask = 1<<k;
+      int bytei = converteddatastream[i];
+      bool bit = !!(bytei&bitmask);
+      while (millis()-time < DELAY);
+      digitalWrite(COMMUNICATE,bit);
+      time = millis();
+    }
+  }
+
 }
 
 //works out what type of GPS data it is
@@ -155,15 +193,8 @@ bool ggaParse()
    Serial.println("No GPS fix");
    return false;
  }
- Serial.println("about to parse int");
  altitude = parseAlt(GPSinfo[8]);
   
-  //byte f = readChar();
-  //Serial.print("Parsing alt: (");
-  //for (int i = 0; i < strlen(GPSinfo[8]); i++){
-  //Serial.write(GPSinfo[8][i]);
-  //}
-  //Serial.println(")");
   
   return true;
 }
@@ -186,7 +217,7 @@ int parseAlt(char * str)
     appendchar(temp,str[i]);
   }
   temp[i] = '\0';
-  //Serial.println(temp);
+
   return atoi(temp);
 }
 
@@ -213,7 +244,6 @@ bool parseLongLatitude(bool isLongitude, latlon &l, int indexInGPS)
   
   if (isLongitude)
   {
-    //Serial.println(GPSinfo[indexInGPS]);
     appendchar(str, GPSinfo[indexInGPS][0]);
     appendchar(str, GPSinfo[indexInGPS][1]);
     appendchar(str, GPSinfo[indexInGPS][2]);
@@ -294,7 +324,6 @@ void splitByComma()
   int length = GPSSerial.readBytesUntil('\r', line, 100);
   line[length] = 0;
 
-  Serial.println(line);
 
   char * pch;
 
@@ -305,7 +334,7 @@ void splitByComma()
    
   while (pch != NULL)
   {
-    //Serial.println(pch);
+
     GPSinfo[i++] = pch;
     pch = strtok (NULL, ",");
   }
