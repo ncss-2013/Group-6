@@ -19,7 +19,9 @@
 
 GlobalPositioning gps(8, 9, 4800);
 
-long originLat, originLong;
+//long originLat, originLong;
+#define originLat (-121998)
+#define originLong (544299)
 
 char writeBuffer[WRITE_BUFFER_SIZE];
 
@@ -28,6 +30,7 @@ void readEEPROM(long* latitude, long* longitude);
 
 void setup() {
   Serial.begin(9600); 
+  /*
   pinMode(RESET_PIN, OUTPUT);
   digitalWrite(RESET_PIN, HIGH);
   
@@ -54,6 +57,7 @@ void setup() {
   addChecksum(writeBuffer);
   delay(PAUSE_TIME);
   Serial.write((const uint8_t*)writeBuffer, WORD_SIZE);
+  */
 }
 
 
