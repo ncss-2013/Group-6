@@ -18,7 +18,8 @@ bool gga;
 
 //Container for split GPS data strings
 char * GPSinfo[200];
-
+char * GGAinfo[200];
+ 
 void setup()
 {
   // Initialise hardware serial port for communication with the PC
@@ -75,7 +76,7 @@ bool readGPSData()
  
  for (int i = 0;i<3;i++)
   {
-   appendChar(sent,readchar());
+   appendchar(sent,readChar());
   }
  
  if (strcmp(sent,"RMC")==0)
@@ -120,7 +121,7 @@ bool rmcParse()
     return false;
   }
 
-  splitByComma();
+  splitByComma(GPSinfo);
 
   /* Parse Latitude and Longitude */
   parseLongLatitude(false, lat, 0);
@@ -130,14 +131,28 @@ bool rmcParse()
 }
 
 bool ggaParse()
-{
- char str[50];
- wipeArray(str,50);
+{ 
+ splitByComma(GGAinfo);
  
-  
-  
+ if (GGAinfo[7] == 0)
+ {
+   return false;
+ }
+ 
+ altitude = parseAlt(GGAinfo[7]); 
+  return true;
 }
 
+int parseAlt(char * str)
+{
+  char temp[10];
+  int i = 0;
+  while(str[i] != '.')
+  {
+    appendchar(temp,str[i]);
+  }
+  return atoi(temp);
+}
 
 
 
@@ -226,7 +241,7 @@ void wipeArray(char * array, int length)
   }
 }
 
-splitByComma(char *array)
+void splitByComma(char *array[200])
 {
   char line[1500];
   int length = GPSSerial.readBytesUntil('\r', line, 22);
@@ -240,7 +255,7 @@ splitByComma(char *array)
      
   while (pch != NULL)
   {
-    GPSinfo[i] = pch;
+    array[i] = pch;
     pch = strtok (NULL, ",");
      
        
