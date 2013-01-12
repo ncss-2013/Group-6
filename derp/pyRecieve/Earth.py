@@ -20,7 +20,7 @@ class Graph(object):
 		self.logfile = open('kmlgen.log', 'a')
 
 		# Log an opening statement to logfile
-		self.logfile.write('New KML generation started at {0}.\n'.format(time.time()))
+		self.logfile.write('!! New KML generation started at {0}. !!\n'.format(time.time()))
 
 		# Create a general style to apply to the points		
 		linestyle = simplekml.LineStyle(width=4)
@@ -71,6 +71,7 @@ class Graph(object):
 			point.temperature,
 			point.timestamp
 		))
+		self.logfile.flush()
 
 	def save(self, filename='balloon.kml'):
 		self.kml.save(filename)

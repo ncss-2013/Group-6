@@ -55,4 +55,4 @@ for datapoint in tempdata:
 
 	graph.add_point(point)
 
-graph.save()
+	graph.save()
