@@ -21,8 +21,6 @@ void printBitStream(bitStream ibs){
   ordPrint(ibs.getLongitude());
   Serial.print("|ALT");
   Serial.print(ibs.getAltitude());
-  Serial.print("|TMP");
-  Serial.print(ibs.getTemperature());
   Serial.print("|END");
 }
 
