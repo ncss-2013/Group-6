@@ -17,7 +17,7 @@ void packWord(char* buffer, int latitude, int longitude, int altitude) {
 }
 
 void addChecksum(char* buffer) {
-  int a = 0, b = 0;
+  int a = 0, b = 0; 
   for(int i = 0; i<10; i++) {
     int nibble;
     if(i%2 == 0) {
@@ -25,8 +25,8 @@ void addChecksum(char* buffer) {
     } else {
       nibble = buffer[i/2] & 0b1111;
     }
-    a += nibble;
-    b += a;
+    a = (a + nibble) % 16;
+    b = (b + a) % 16;
   }
   buffer[5] = char(a<<4);
   buffer[5] |= 0b1111;

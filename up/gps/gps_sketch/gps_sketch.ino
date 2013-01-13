@@ -28,8 +28,12 @@ char writeBuffer[WRITE_BUFFER_SIZE];
 void writeEEPROM(long latitude, long longitude);
 void readEEPROM(long* latitude, long* longitude);
 
+void packData(int latDeg, int latMin, float latSec,
+              int longDeg, int longMin, float longSec, int alt);
+
 void setup() {
-  Serial.begin(9600); 
+  Serial.begin(9600);
+  pinMode(13, OUTPUT);
   /*
   pinMode(RESET_PIN, OUTPUT);
   digitalWrite(RESET_PIN, HIGH);
@@ -67,20 +71,30 @@ void loop() {
   while (waitUntil > millis())
     gps.readData();
   Serial.write(WARN_BYTE);
+
+//  packData(gps.latDeg, gps.latMin, gps.latSec,
+//           gps.longDeg, gps.longMin, gps.longSec, gps.altitude);
+
+  packData(-33,53,20, 151,11,20, 42);
+  /*
+  for (int i = 0; i < 5; i++) {
+    writeBuffer[i] = B10101010;
+  }
+  */
   
-  packData(gps.latDeg, gps.latMin, gps.latSec,
-           gps.longDeg, gps.longMin, gps.longSec);
-  while (sendAt > millis())
-    ;
+  while (sendAt > millis()) {
+    //Serial.print(sendAt);
+    //Serial.println(millis());
+  }
   Serial.write((const uint8_t*)writeBuffer, WORD_SIZE);
 }
 
 void packData(int latDeg, int latMin, float latSec,
-              int longDeg, int longMin, float longSec) {
+              int longDeg, int longMin, float longSec, int alt) {
   long latitude, longitude, altitude;
   latitude = coordToSeconds(latDeg, latMin, latSec);
   longitude = coordToSeconds(longDeg, longMin, longSec);
-  altitude = altitude;
+  altitude = alt;
   packWord(writeBuffer, latitude - originLat, longitude - originLong, altitude);
   addChecksum(writeBuffer);
 }
