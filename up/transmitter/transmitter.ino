@@ -15,7 +15,7 @@
 int c;
 unsigned long count = 0;
 
-byte data[SEND_BYTES+1];
+byte data[SEND_BYTES+2];
 
 void setup()
 {
@@ -27,7 +27,6 @@ void setup()
     pinMode(TRANSISTOR, OUTPUT);
     pinMode(LED, OUTPUT);
     pinMode(SIGNAL_OUT, OUTPUT);
-    
 
     // Setup the timer
     timer_set_prescale(PRESCALE_32);
@@ -39,6 +38,7 @@ void setup()
     
     Serial.begin(9600);
     data[0] = START_SENDING_BIT;
+    data[SEND_BYTES + 1] = 0;
 }
 
 int current_byte=1;
@@ -76,6 +76,7 @@ void loop()
       transmitting = true;
       receiving = false;
       current_byte = 0;
+      current_bit = 0;
     }
   }
   if (!Serial.available() && count >= 100) {
@@ -94,7 +95,7 @@ void loop()
       current_byte++;
       Serial.print("\n");
     }
-    if (current_byte >= SEND_BYTES+1) {
+    if (current_byte >= SEND_BYTES+2) {
       current_byte = 1;
       send_bit = 0;
       transmitting = false;

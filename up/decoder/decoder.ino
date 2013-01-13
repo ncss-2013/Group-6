@@ -15,17 +15,19 @@
 #define INT_BITS 16
 
 //creates variables
-int threshold = 0;           // The threshold at which the signal is classed as HIGH
 int bit_limit = 48;            // The amount of bits that are allowed in the message.
 int bit_rate = 40;             // Sets the bit rate of the transmission
 int bit_delay = 1000/bit_rate; // Sets the standard delay for the bit reading
 
+#define originLat (-121998)
+#define originLng (544299)
+
 bool data[48];
 
-int lng, lat, alt;
+long lng, lat, alt;
 
 // reads the data from the "data" array and converts the bits to integers
-void readDataBits (int* var, int startBit, int bitCount, bool* data, bool signedInt)
+void readDataBits (long* var, int startBit, int bitCount, bool* data, bool signedInt)
 {
   *var = 0;
   // converts the data into two's complement
@@ -53,8 +55,10 @@ void setup()
 bool readBit()
 {
 //  Serial.println(analogRead(INPUT_PIN));
-  threshold = analogRead(A1);
-  return analogRead(INPUT_PIN) >= threshold;
+  // The threshold at which the signal is classed as HIGH
+  int threshold = 40;//analogRead(A1);
+  int value = analogRead(INPUT_PIN);
+  return value >= threshold;
 }
 
 void loop()
@@ -106,19 +110,50 @@ void loop()
       allZeroes = false;
   }
   
-//  if ((a == receivedA) && (b == receivedB) && !allZeroes)
-//  {
+  if ((a == receivedA) && (b == receivedB) && !allZeroes)
+  {
     readDataBits (&lat, 0, LAT_BITS, data, true);
-    Serial.println(lat);
-    Serial.print(",");
+    lat += originLat;
+    Serial.print(lat);
+    Serial.print(" = ");
+    int lat_deg, lat_min, lat_sec;
+    lat_deg = lat / 3600;
+    lat %= 3600;
+    if (lat_deg < 0) {
+      lat_deg--;
+      lat += 3600;
+    }
+    lat_min = lat / 60;
+    lat_sec = lat % 60;
+    Serial.print(lat_deg);
+    Serial.print(' ');
+    Serial.print(lat_min);
+    Serial.print('\'');
+    Serial.print(lat_sec);
+    Serial.print("\" -- ");
     
     readDataBits (&lng, LAT_BITS, LONG_BITS, data, true);
-    Serial.println(lng);
-    Serial.print(",");
+    lng += originLng;
+    Serial.print(lng);
+    Serial.print(" = ");
+    int lng_deg, lng_min, lng_sec;
+    lng_deg = lng / 3600;
+    lng %= 3600;
+    if (lng_deg < 0) {
+      lng_deg--;
+      lng += 3600;
+    }
+    lng_min = lng / 60;
+    lng_sec = lng % 60;
+    Serial.print(lng_deg);
+    Serial.print(' ');
+    Serial.print(lng_min);
+    Serial.print('\'');
+    Serial.print(lng_sec);
+    Serial.print("\" -- ");
     
     readDataBits (&alt, LAT_BITS + LONG_BITS, ALT_BITS, data, false);
-    Serial.print(alt*10);
-    Serial.print(",");
-//  }
+    Serial.println(alt * 10);
+  }
 }
 
